@@ -1,0 +1,31 @@
+{
+  "name": "cibi-power-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Frontend-only marketing website for a battery company. Static export, no backend.",
+  "scripts": {
+    "dev": "next dev",
+    "prebuild": "npm run assets",
+    "build": "next build",
+    "assets": "node scripts/generate-images.mjs && node scripts/generate-og-image.mjs && node scripts/generate-icons.mjs",
+    "start": "npx serve out",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "next": "^16.3.4",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.1.13",
+    "@types/node": "22.15.3",
+    "@types/react": "19.1.10",
+    "@types/react-dom": "19.1.7",
+    "tailwindcss": "4.1.13",
+    "typescript": "5.8.3"
+  },
+  "allowScripts": {
+    "@tailwindcss/oxide@4.1.13": true,
+    "sharp@0.34.5": true
+  }
+}
