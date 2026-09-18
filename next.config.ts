@@ -2,25 +2,34 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /**
-   * Fully static, frontend-only output. `next build` emits plain HTML/CSS/JS
-   * into `out/` which can be served from any static host or CDN.
+   * Fully static, frontend-only output.
+   * `next build` generates the complete static website in `out/`.
    */
-  output: "standalone",
+  output: "export",
 
-  /** Emits `/about/index.html` so clean URLs work on every static host. */
+  /**
+   * Generate `/about/index.html`, `/contact/index.html`, etc.
+   * This allows clean URLs on static hosts.
+   */
   trailingSlash: true,
 
-  /** No image optimisation server exists in a static export. */
-  images: { unoptimized: true },
+  /**
+   * Static export has no Next.js image optimization server.
+   */
+  images: {
+    unoptimized: true,
+  },
 
-  /* Pin the workspace root: a stray lockfile in the home directory above this
-     project would otherwise be picked up and widen the file-tracing scope. */
-  turbopack: { root: __dirname },
+  /**
+   * Keep Turbopack scoped to this project.
+   */
+  turbopack: {
+    root: __dirname,
+  },
 
   reactStrictMode: true,
+
   productionBrowserSourceMaps: false,
 };
 
 export default nextConfig;
-
-import('@opennextjs/cloudflare').then(m => m.initOpenNextCloudflareForDev());

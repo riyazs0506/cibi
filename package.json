@@ -10,7 +10,6 @@
     "assets": "node scripts/generate-images.mjs && node scripts/generate-og-image.mjs && node scripts/generate-icons.mjs",
     "start": "npx serve out",
     "typecheck": "tsc --noEmit",
-    "postbuild": "node scripts/flatten-rsc-payloads.mjs",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
     "upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
