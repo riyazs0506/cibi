@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
    * Fully static, frontend-only output. `next build` emits plain HTML/CSS/JS
    * into `out/` which can be served from any static host or CDN.
    */
-  output: "export",
+  output: "standalone",
 
   /** Emits `/about/index.html` so clean URLs work on every static host. */
   trailingSlash: true,
@@ -22,3 +22,5 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
+
+import('@opennextjs/cloudflare').then(m => m.initOpenNextCloudflareForDev());
