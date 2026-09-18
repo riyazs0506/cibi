@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" width="640" height="480" role="img" aria-label="Solar panels being installed on a clean residential rooftop">
+  <title>Solar panels being installed on a clean residential rooftop</title>
+  
+  <defs>
+    <linearGradient id="panelB" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0%" stop-color="#2d5f8a"/>
+      <stop offset="100%" stop-color="#102a43"/>
+    </linearGradient>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#eef5ff"/>
+      <stop offset="100%" stop-color="#ffffff"/>
+    </linearGradient>
+    <radialGradient id="softGlow">
+      <stop offset="0%" stop-color="#5b9dff" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#5b9dff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="640" height="480" rx="24" fill="#f8fafc"/>
+  <rect x="40" y="44" width="560" height="272" rx="20" fill="url(#sky)" stroke="#e6eef5"/>
+  <circle cx="470" cy="130" r="150" fill="url(#softGlow)"/>
+  <line x1="519" y1="118" x2="527" y2="118" stroke="#5b9dff" stroke-width="3" stroke-linecap="round" opacity="0.5"/><line x1="509.3" y1="141.3" x2="515" y2="147" stroke="#5b9dff" stroke-width="3" stroke-linecap="round" opacity="0.5"/><line x1="486" y1="151" x2="486" y2="159" stroke="#5b9dff" stroke-width="3" stroke-linecap="round" opacity="0.5"/><line x1="462.7" y1="141.3" x2="457" y2="147" stroke="#5b9dff" stroke-width="3" stroke-linecap="round" opacity="0.5"/><line x1="453" y1="118" x2="445" y2="118" stroke="#5b9dff" stroke-width="3" stroke-linecap="round" opacity="0.5"/><line x1="462.7" y1="94.7" x2="457" y2="89" stroke="#5b9dff" stroke-width="3" stroke-linecap="round" opacity="0.5"/><line x1="486" y1="85" x2="486" y2="77" stroke="#5b9dff" stroke-width="3" stroke-linecap="round" opacity="0.5"/><line x1="509.3" y1="94.7" x2="515" y2="89" stroke="#5b9dff" stroke-width="3" stroke-linecap="round" opacity="0.5"/><circle cx="486" cy="118" r="26" fill="#5b9dff" opacity="0.85"/>
+
+  <!-- house -->
+  <path d="M96 300 L96 214 L226 146 L356 214 L356 300 Z" fill="#ffffff" stroke="#486581" stroke-width="2.4" stroke-linejoin="round"/>
+  <path d="M84 220 L226 136 L368 220" fill="none" stroke="#102a43" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="140" y="242" width="46" height="58" rx="4" fill="#eef5ff" stroke="#486581" stroke-width="2"/>
+  <rect x="266" y="242" width="46" height="46" rx="4" fill="#eef5ff" stroke="#486581" stroke-width="2"/>
+
+  <!-- panels on the roof plane, following its pitch -->
+  <path d="M150 218 L222 176 L292 218 L220 260 Z" fill="url(#panelB)"/>
+  <path d="M168 218 L226 184 M204 200 L262 234 M186 236 L244 202" stroke="#8dbcff" stroke-width="1.6" opacity="0.4"/>
+  <path d="M240 168 L296 136 L352 168 L296 200 Z" fill="url(#panelB)" opacity="0.92"/>
+  <path d="M256 168 L300 143 M278 155 L322 181" stroke="#8dbcff" stroke-width="1.6" opacity="0.4"/>
+
+  <!-- inverter on the wall -->
+  <rect x="392" y="214" width="78" height="96" rx="12" fill="url(#panelB)"/>
+  <rect x="404" y="228" width="54" height="34" rx="6" fill="#f8fafc"/>
+  <rect x="404" y="228" width="54" height="3" rx="1.5" fill="#5b9dff"/>
+  <circle cx="412" cy="280" r="4.5" fill="#65c9a5"/>
+  <circle cx="426" cy="280" r="4.5" fill="#829ab1" opacity="0.5"/>
+
+  <!-- the line from roof to inverter: what the system actually does -->
+  <path d="M296 200 q 60 40 96 46" fill="none" stroke="#5b9dff" stroke-width="2.6" stroke-dasharray="7 7" opacity="0.7"/>
+
+  <!-- a quiet trust mark -->
+  <g transform="translate(74,352)">
+    <circle cx="34" cy="34" r="34" fill="#ffffff" stroke="#e6eef5"/>
+    <path d="M34 16 l16 6 v14 c0 9.4-6.6 16.6-16 19.6-9.4-3-16-10.2-16-19.6V22z" fill="none" stroke="#65c9a5" stroke-width="2.6" stroke-linejoin="round"/>
+    <path d="m27 34 5 5 10-11" fill="none" stroke="#65c9a5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="170" y="380" font-family="system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-size="17" font-weight="700" fill="#102a43">Installed properly.</text>
+  <text x="170" y="404" font-family="system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-size="14" font-weight="500" fill="#486581">Surveyed, sized and commissioned.</text>
+  <text x="170" y="428" font-family="system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-size="14" font-weight="500" fill="#486581">Then looked after.</text>
+</svg>

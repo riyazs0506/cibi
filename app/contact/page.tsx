@@ -14,7 +14,7 @@ import { FaqAccordion } from "@/components/FaqAccordion";
 export const metadata: Metadata = buildMetadata({
   title: "Contact Us",
   description:
-    "Have a question about a battery, service or replacement? Send us a message and our team will help you find the right solution.",
+    "Have a question about solar for your home or business? Send us a message and our team will help you find the right solution.",
   path: "/contact",
 });
 
@@ -33,7 +33,7 @@ export default function ContactPage() {
       <PageHero
         eyebrow="Contact"
         title="We're Here to Help."
-        description="Have a question about a battery, service, or replacement? Get in touch with us."
+        description="Have a question about solar panels, a water heater, or a system you already have? Get in touch with us."
         crumbs={crumbs}
       />
 

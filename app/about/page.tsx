@@ -11,31 +11,32 @@ import { CtaBand } from "@/components/sections/CtaBand";
 export const metadata: Metadata = buildMetadata({
   title: "About Us",
   description:
-    "We provide dependable battery solutions with quality products, honest guidance and service you can rely on. Learn what we stand for.",
+    "We help homes and businesses move to solar with quality equipment, honest sizing and service you can rely on. Learn what we stand for.",
   path: "/about",
 });
 
 const crumbs = [{ name: "Home", href: "/" }, { name: "About" }];
 
-/* Deliberately no founding year, branch count, customer numbers or awards.
-   None of that has been supplied, and none of it will be invented here. */
+/* Deliberately no founding year, installation count, capacity installed or
+   awards. None of that has been supplied, and none of it will be invented. */
 const promises: { icon: IconName; title: string; description: string }[] = [
   {
     icon: "shield",
     title: "Quality",
     description:
-      "We focus on products that meet the needs of your vehicle and everyday use.",
+      "We fit equipment we would be happy to put on our own roof, and we can tell you why we chose it.",
   },
   {
     icon: "compass",
     title: "Trust",
     description:
-      "Clear information and honest guidance help you make the right choice.",
+      "Clear numbers, realistic expectations, and a straight answer if solar is a poor fit for your roof.",
   },
   {
     icon: "support",
     title: "Support",
-    description: "We're here to help before, during, and after your purchase.",
+    description:
+      "We are here before, during and long after the install - including the paperwork and the warranty claims.",
   },
 ];
 
@@ -46,8 +47,8 @@ export default function AboutPage() {
 
       <PageHero
         eyebrow="About Us"
-        title="Powering Journeys. Building Trust."
-        description="We are committed to providing dependable battery solutions with quality products, honest guidance, and service you can rely on."
+        title="Clean Power. Built on Trust."
+        description="We are committed to making solar simple and dependable, with quality equipment, honest guidance, and service you can rely on."
         crumbs={crumbs}
       />
 
@@ -63,21 +64,22 @@ export default function AboutPage() {
 
             <Reveal delay={80} className="prose-soft max-w-xl">
               <p>
-                Every vehicle depends on reliable power. Our goal is to make
-                finding that power simple, convenient, and stress-free.
+                Going solar should be a straightforward decision, and too often
+                it is not. Our goal is to make working out what you need simple,
+                clear and free of pressure.
               </p>
               <p>
-                With a focus on quality products and customer care, we help
-                individuals and businesses choose battery solutions that suit
-                their everyday needs.
+                With a focus on quality equipment and careful installation, we
+                help homes and businesses move to solar in a way that suits the
+                roof they have and the power they actually use.
               </p>
             </Reveal>
           </div>
 
           <Reveal delay={120}>
             <img
-              src="/images/about-battery-fitting-service.svg"
-              alt="A battery being fitted to a vehicle in a clean service bay"
+              src="/images/about-solar-installation.svg"
+              alt="Solar panels being installed on a clean residential rooftop"
               width={640}
               height={480}
               loading="lazy"
@@ -121,8 +123,8 @@ export default function AboutPage() {
       </section>
 
       <CtaBand
-        title="Your Journey Deserves Reliable Power."
-        description="And we're here to help you find it."
+        title="Your Roof Could Be Doing More."
+        description="And we're here to help you work out exactly how much."
         primary={{ label: "Contact Us", href: "/contact" }}
         secondary={{ label: "Explore Products", href: "/products" }}
       />

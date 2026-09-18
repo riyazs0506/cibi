@@ -1,7 +1,7 @@
 {
-  "name": "Cibi Power",
-  "short_name": "Cibi Power",
-  "description": "Car, bike, commercial, heavy-duty and inverter batteries, with honest guidance and dependable support.",
+  "name": "Cibi Solar",
+  "short_name": "Cibi Solar",
+  "description": "Solar panels, inverters, batteries, water heaters and street lights, with honest guidance and dependable support.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f8fafc",

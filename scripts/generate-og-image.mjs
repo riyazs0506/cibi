@@ -2,7 +2,7 @@
  * OPEN GRAPH IMAGE GENERATOR
  * =============================================================================
  *
- *  Renders the 1200x630 social preview card to public/images/og-cibi-power.png.
+ *  Renders the 1200x630 social preview card to public/images/og-cibi-solar.png.
  *
  *  Run with:  node scripts/generate-og-image.mjs
  *  (wired into `npm run build` via the prebuild script)
@@ -29,10 +29,10 @@ mkdirSync(outDir, { recursive: true });
 
 /* Kept in step with data/site.ts. Plain strings so this script has no
    dependency on the TypeScript build. */
-const BRAND = "Cibi Power";
+const BRAND = "Cibi Solar";
 const EYEBROW = "POWER YOU CAN TRUST";
-const HEADLINE = "Reliable Power for Every Journey.";
-const SUB = "Car, bike, commercial, heavy-duty and inverter batteries.";
+const HEADLINE = "Clean Power for Every Day.";
+const SUB = "Solar panels, inverters, batteries, water heaters and street lights.";
 
 const card = {
   type: "div",
@@ -88,10 +88,12 @@ const card = {
                   {
                     type: "div",
                     props: {
+                      /* The sun from the brand mark, reduced to its simplest
+                         form - satori has no SVG path support here. */
                       style: {
-                        width: 36,
-                        height: 30,
-                        borderRadius: 9,
+                        width: 34,
+                        height: 34,
+                        borderRadius: 9999,
                         background: "#5b9dff",
                         display: "flex",
                       },
@@ -173,9 +175,9 @@ const card = {
 const response = new ImageResponse(card, { width: 1200, height: 630 });
 const buffer = Buffer.from(await response.arrayBuffer());
 
-const target = join(outDir, "og-cibi-power.png");
+const target = join(outDir, "og-cibi-solar.png");
 writeFileSync(target, buffer);
 
 console.log(
-  `Generated og-cibi-power.png (${(buffer.length / 1024).toFixed(1)} KB)`,
+  `Generated og-cibi-solar.png (${(buffer.length / 1024).toFixed(1)} KB)`,
 );

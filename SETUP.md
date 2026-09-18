@@ -1,145 +1,123 @@
-# Setup checklist — before this site goes live
+# Setup checklist
 
-Everything below is unset on purpose. The site is built so that anything
-missing **hides itself** rather than showing a placeholder: no invented phone
-number, no fake address, no made-up review score. That keeps the site honest
-while it waits, but it also means a few blocks stay invisible until you fill
-these in.
+Everything below must be real, verified information before this site goes live.
+Nothing here has been invented — fields left unset are simply not rendered, and
+are omitted from the structured data, so the site never publishes a fake phone
+number, address or statistic.
 
-While `npm run dev` is running, a yellow banner at the top of every page lists
-what is still missing. It is development-only and never appears in a build.
+While `npm run dev` is running, a banner at the top of every page lists whatever
+is still missing. **That banner is compiled out of production builds** and can
+never reach a visitor.
 
 ---
 
 ## 1. Business details — `data/site.ts`
 
-This is the one file to edit. Replace each `null` with a real, verified value.
+This is the only file you need to edit for contact information.
 
-| Field | Example | What appears once it is set |
+| Field | What it is | Where it shows |
 |---|---|---|
-| `contact.phone` | `"+91 98765 43210"` | Header and footer call links, contact page, mobile CTA bar |
-| `contact.phoneHref` | `"+919876543210"` | The `tel:` link target — E.164, no spaces |
-| `contact.email` | `"hello@example.com"` | Footer and contact page email links |
-| `contact.address` | full postal address | Contact page address block, LocalBusiness structured data |
-| `contact.openingHours` | see below | Opening-hours table and structured data |
-| `contact.mapUrl` | map listing URL | "Get directions" link |
-| `socialProfiles` | array of profile URLs | Footer social links, `sameAs` in structured data |
+| `brand.name` | Trading name | Header, footer, every page title |
+| `brand.legalName` | Registered entity | Footer copyright, `Organization` schema |
+| `contact.phone` | Display form, e.g. `+91 98765 43210` | Contact page, footer, mobile bar |
+| `contact.phoneHref` | E.164 form, e.g. `+919876543210` | `tel:` links |
+| `contact.email` | Public enquiry address | Contact page, footer, privacy page |
+| `contact.address` | Full postal address | Contact page, footer, `LocalBusiness` schema |
+| `contact.openingHours` | Real trading hours | Contact page, footer, `LocalBusiness` schema |
+| `contact.mapUrl` | Link to the map listing | Address link |
+| `socialProfiles` | Profile URLs | `Organization.sameAs` |
 
-Opening hours take both a human label and machine-readable values, because the
-first is for visitors and the second is for search engines:
+**Until `contact.address` is set, no `LocalBusiness` structured data is emitted
+at all.** That is deliberate — a local business entry without a verifiable
+address is worse than none.
 
-```ts
-openingHours: [
-  {
-    days: "Monday – Saturday",
-    hours: "9:00 AM – 7:00 PM",
-    schemaDays: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-    opens: "09:00",
-    closes: "19:00",
-  },
-  {
-    days: "Sunday",
-    hours: "Closed",
-    schemaDays: ["Sunday"],
-    opens: null,
-    closes: null,
-  },
-],
-```
+> ⚠ **The brand name is a placeholder.** "Cibi Solar" was inferred from the
+> project folder name. Confirm or replace it in `data/site.ts`, then rerun
+> `npm run assets` so the generated artwork and social card match.
 
-### Confirm the trading name
+## 2. Live domain
 
-`brand.name` is currently **"Cibi Power"**, which was inferred, not supplied.
-Confirm it or replace it — along with `brand.legalName` if the registered
-entity differs. It appears in every page title, the logo, the footer and the
-structured data.
-
----
-
-## 2. The live domain
-
-`NEXT_PUBLIC_SITE_URL` is read at build time and baked into every canonical
-URL, the sitemap and the social card. Set it or the site will publish
-canonicals pointing at a placeholder domain.
+Set at build time, so canonical URLs, the sitemap and social cards all point at
+the right origin:
 
 ```bash
-NEXT_PUBLIC_SITE_URL=https://your-real-domain.com npm run build
+NEXT_PUBLIC_SITE_URL=https://www.your-real-domain.com npm run build
 ```
 
-Set it in your host's environment-variable settings, not in a committed file.
+If unset it falls back to `https://www.cibisolar.com`, which is a placeholder.
 
----
+## 3. Product catalogue — `data/products.ts`
 
-## 3. The enquiry form
+The 15 products are a **sample range**, clearly marked as such at the top of the
+file. They are technically plausible and correctly structured, but they are not
+the client's actual catalogue.
 
-The contact form is fully built and validated, but has nowhere to send
-anything. Until an endpoint exists it tells the visitor plainly that it isn't
-connected — it never claims a message was sent.
+Replace them with real products. Each needs: `slug`, `name`, `category`,
+`tagline`, `summary`, the five headline attributes (`type`, `capacity`,
+`output`, `warranty`, `application`), `overview`, `specs`, `applications` and
+`warrantyNote`.
 
-To connect it, set an endpoint that accepts a JSON `POST`:
+Deliberately absent, and to stay absent unless genuinely true: prices, subsidy
+amounts, ratings, reviews, stock counts, and any claim about what a system will
+generate or save.
+
+## 4. Sizing guide — `data/finder.ts`
+
+The solar finder's logic is a **sample sizing guide**. The bill bands and the
+product each answer maps to should be replaced with the client's own rules.
+
+The finder is written to be honest about its limits: every result says it is a
+starting point rather than a system design, and points the visitor at a real
+conversation. Keep that framing.
+
+## 5. Enquiry form — `lib/enquiry.ts`
+
+The contact form is fully built and validated but has **no destination**. It
+does not pretend otherwise: submitting a valid form says the form is not
+connected yet and offers direct contact instead.
+
+To connect a backend, edit only that file:
 
 ```bash
-NEXT_PUBLIC_ENQUIRY_ENDPOINT=https://your-form-service.example/submit
+NEXT_PUBLIC_ENQUIRY_ENDPOINT=https://your-api.example.com/enquiries npm run build
 ```
 
-The posted body is:
+Adjust the `fetch` in `submitEnquiry` to match your API's contract. Nothing in
+`components/ContactForm.tsx` needs to change. Once an endpoint is configured,
+the form shows the "Thank you! We'll get back to you soon." confirmation.
 
-```json
-{
-  "name": "…", "phone": "…", "email": "…",
-  "need": "…", "message": "…",
-  "product": "…",      // only when the visitor came from an "Enquire Now" button
-  "sourcePath": "/products/car-batteries/drive-45/"
-}
+## 6. Legal pages
+
+`/privacy-policy` and `/terms` describe how this website actually behaves, which
+is accurate and useful. They are **not legal advice**, and both carry a visible
+review notice. Have them checked against the business's real practices and local
+requirements, then remove the notice by deleting `<LegalNotice />` from both
+pages.
+
+Note that the privacy policy currently states that the form transmits nothing.
+**Update that section when you connect an enquiry endpoint.**
+
+## 7. Imagery
+
+See [IMAGES.md](IMAGES.md). The artwork is vector illustration generated by
+`scripts/generate-images.mjs`. Replacing it with photography is a drop-in swap.
+
+---
+
+## Pre-launch verification
+
+```bash
+npm run typecheck     # no type errors
+npm run build         # static export into out/
+npm start             # serve out/ locally at http://localhost:4000
 ```
 
-Anything that accepts a JSON POST works — a form service, a serverless
-function, or your own API. If the API expects a different shape, adjust the
-`fetch` in **`lib/enquiry.ts`**; nothing in the form component needs to change.
+Then confirm:
 
-> Since this is a static site with no backend, the endpoint URL is visible in
-> the page source. Use a service that expects public submissions and does its
-> own spam filtering and rate limiting — don't point it at an unprotected
-> internal API.
-
----
-
-## 4. The product catalogue — `data/products.ts`
-
-The 15 products in this build are **plausible samples, not the real
-catalogue**. The file header says so. Names, capacities, dimensions, weights,
-warranty periods and prices all need to come from the client.
-
-Each product needs an image at a matching path — see [IMAGES.md](IMAGES.md).
-
-Categories live in `data/categories.ts`, services in `data/services.ts`, and
-FAQ content in `data/faqs.ts`.
-
----
-
-## 5. The battery finder — `data/finder.ts`
-
-The finder uses **real vehicle makes and models**, but the mapping from
-vehicle to recommended battery is **illustrative**. It has not been checked
-against a fitment chart.
-
-The result card already tells the visitor this is a guide and asks them to
-confirm with the team before buying. Either replace the mapping with a
-verified fitment table, or keep that wording. Do not present unverified
-fitment as authoritative — the wrong battery size or terminal layout is a real
-problem for a customer.
-
----
-
-## 6. Before you publish
-
-- [ ] `data/site.ts` — every `null` replaced, trading name confirmed
-- [ ] `NEXT_PUBLIC_SITE_URL` set to the live domain
-- [ ] Real product catalogue in `data/products.ts`, with images
-- [ ] Fitment mapping verified, or the guidance wording kept
-- [ ] Enquiry endpoint connected and a test submission received
-- [ ] Legal pages reviewed — `app/privacy-policy/` and `app/terms/` are
-      general-purpose drafts and should be checked by someone qualified,
-      especially if you add analytics or collect any personal data
-- [ ] `npm run build` clean, then check `out/` with `npm run start`
-- [ ] The dev-only setup banner no longer lists anything missing
+- [ ] The dev banner lists nothing (`npm run dev`)
+- [ ] No placeholder brand name anywhere
+- [ ] Contact details are real and reachable
+- [ ] `out/sitemap.xml` URLs use the live domain
+- [ ] `out/robots.txt` points at the live sitemap
+- [ ] Social card renders (paste a URL into any link-preview debugger)
+- [ ] Legal pages reviewed, review notice removed

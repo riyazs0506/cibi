@@ -32,9 +32,9 @@ export function MobileCtaBar() {
   }
 
   actions.push({
-    label: "Find Battery",
+    label: "Find System",
     href: FINDER_HREF,
-    icon: "car",
+    icon: "sun",
     emphasis: true,
   });
 

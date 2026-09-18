@@ -10,10 +10,14 @@ export interface LogoProps {
 }
 
 /**
- * Brand mark plus wordmark. The mark is a battery cell whose terminal reads as
- * a soft power arc - restrained rather than a literal lightning bolt.
+ * Brand mark plus wordmark. The mark is a solar module in perspective with a
+ * sun resting above it - read as one shape at small sizes, restrained enough
+ * not to look like a clip-art sunburst.
  */
 export function Logo({ onDark = false, className = "", asLink = true }: LogoProps) {
+  const ink = onDark ? "#102a43" : "#ffffff";
+  const accent = onDark ? "#3d82ea" : "#5b9dff";
+
   const mark = (
     <span className="flex items-center gap-2.5">
       <svg
@@ -31,32 +35,23 @@ export function Logo({ onDark = false, className = "", asLink = true }: LogoProp
           rx="10"
           fill={onDark ? "#ffffff" : "#102a43"}
         />
-        {/* Battery body */}
-        <rect
-          x="9"
-          y="10.5"
-          width="16"
-          height="14"
-          rx="3.2"
-          stroke={onDark ? "#102a43" : "#ffffff"}
-          strokeWidth="1.7"
+
+        {/* Sun - the single accent touch */}
+        <circle cx="17" cy="11.4" r="3.9" fill={accent} />
+
+        {/* Module, in the same three-quarter perspective as the product art */}
+        <path
+          d="M7.6 25.4 10.4 18h13.2l2.8 7.4z"
+          stroke={ink}
+          strokeWidth="1.8"
+          strokeLinejoin="round"
           fill="none"
         />
-        {/* Terminal nub */}
         <path
-          d="M14.4 10.5V8.6a1 1 0 0 1 1-1h3.2a1 1 0 0 1 1 1v1.9"
-          stroke={onDark ? "#102a43" : "#ffffff"}
-          strokeWidth="1.7"
+          d="M9.2 21.7h15.6M17 18v7.4"
+          stroke={ink}
+          strokeWidth="1.5"
           strokeLinecap="round"
-        />
-        {/* Charge level - the single accent touch */}
-        <rect
-          x="11.6"
-          y="16.4"
-          width="10.8"
-          height="5.6"
-          rx="1.6"
-          fill={onDark ? "#3d82ea" : "#5b9dff"}
         />
       </svg>
 

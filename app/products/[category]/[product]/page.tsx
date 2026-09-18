@@ -33,13 +33,16 @@ export function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: RouteParams): Promise<Metadata> {
-  const { category, product: productSlug } = await params;
-  const product = getProduct(category, productSlug);
+  const { category: categorySlug, product: productSlug } = await params;
+  const product = getProduct(categorySlug, productSlug);
+  const category = getCategory(categorySlug);
 
   if (!product) return {};
 
+  /* e.g. "Cibi Ray 550 - 550 W Panels" - the capacity and category are what
+     people actually search for alongside a model name. */
   return buildMetadata({
-    title: `${product.name} - ${product.capacity} ${product.voltage} Battery`,
+    title: `${product.name} - ${product.capacity} ${category?.shortName ?? ""}`.trim(),
     description: product.summary,
     path: `/products/${product.category}/${product.slug}`,
   });
@@ -127,9 +130,9 @@ export default async function ProductPage({ params }: RouteParams) {
               <Reveal delay={80}>
                 <HeadlineSpecs
                   entries={[
-                    { label: "Battery Type", value: product.type },
+                    { label: "Technology", value: product.type },
                     { label: "Capacity", value: product.capacity },
-                    { label: "Voltage", value: product.voltage },
+                    { label: "Output", value: product.output },
                     { label: "Warranty", value: product.warranty },
                     { label: "Suitable Application", value: product.application },
                   ]}
@@ -274,8 +277,8 @@ export default async function ProductPage({ params }: RouteParams) {
       )}
 
       <CtaBand
-        title="Have a Question About This Battery?"
-        description="Tell us about your vehicle and we'll confirm the right fit before you buy."
+        title="Have a Question About This Product?"
+        description="Tell us about your site and we'll confirm it's the right fit before you buy."
         primary={{ label: "Enquire Now", href: enquiryHref }}
         secondary={{ label: "Explore Products", href: "/products" }}
       />

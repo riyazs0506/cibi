@@ -14,7 +14,7 @@ export function absoluteUrl(path: string): string {
 
 /** Shared social preview card, produced by scripts/generate-og-image.mjs. */
 const OG_IMAGE = {
-  url: "/images/og-cibi-power.png",
+  url: "/images/og-cibi-solar.png",
   type: "image/png",
   width: 1200,
   height: 630,

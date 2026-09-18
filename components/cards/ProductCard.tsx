@@ -75,7 +75,7 @@ export function ProductCard({
           <dl className="mt-5 grid grid-cols-2 gap-x-4 gap-y-3.5 border-t border-line-soft pt-5">
             <Spec label="Type" value={product.type} />
             <Spec label="Capacity" value={product.capacity} />
-            <Spec label="Voltage" value={product.voltage} />
+            <Spec label="Output" value={product.output} />
             <Spec label="Warranty" value={product.warranty} />
             <div className="col-span-2 min-w-0">
               <dt className="text-[0.6875rem] font-medium uppercase tracking-[0.09em] text-muted">

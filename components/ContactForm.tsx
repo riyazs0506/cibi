@@ -139,7 +139,7 @@ export function ContactForm() {
     setProduct(requested);
     setValues((current) => ({
       ...current,
-      need: current.need || "Choosing the right battery",
+      need: current.need || "A quote for rooftop solar",
       message:
         current.message || `I'd like to know more about the ${requested}.`,
     }));
@@ -373,7 +373,7 @@ export function ContactForm() {
         id="message"
         label="Message"
         error={errors.message}
-        hint="Your vehicle or what you're trying to power helps us answer properly."
+        hint="Your roof, your usual bill, or what you're trying to power all help us answer properly."
       >
         <textarea
           id="message"

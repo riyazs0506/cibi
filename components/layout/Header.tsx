@@ -8,8 +8,8 @@ import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { Logo } from "./Logo";
 
-/** Where the "Find Your Battery" call to action points. */
-export const FINDER_HREF = "/#battery-finder";
+/** Where the "Design Your System" call to action points. */
+export const FINDER_HREF = "/#solar-finder";
 
 export function Header() {
   const pathname = usePathname();
@@ -108,7 +108,7 @@ export function Header() {
 
         <div className="hidden lg:block">
           <Button href={FINDER_HREF} variant="primary" size="md">
-            Find Your Battery
+            Design Your System
           </Button>
         </div>
 
@@ -164,7 +164,7 @@ export function Header() {
             size="lg"
             className="mt-5 w-full"
           >
-            Find Your Battery
+            Design Your System
           </Button>
         </nav>
       </div>

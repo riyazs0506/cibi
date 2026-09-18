@@ -4,10 +4,10 @@
  * ========================================================================== */
 
 export type ServiceIcon =
-  | "replacement"
+  | "assessment"
+  | "design"
   | "installation"
-  | "inspection"
-  | "guidance"
+  | "paperwork"
   | "warranty"
   | "maintenance";
 
@@ -23,50 +23,50 @@ export interface Service {
 export const services: Service[] = [
   {
     number: "01",
-    slug: "battery-replacement",
-    title: "Battery Replacement",
+    slug: "site-assessment",
+    title: "Site Assessment",
     description:
-      "Need a new battery? We help you find a suitable replacement for your vehicle and make the process simple.",
-    icon: "replacement",
+      "We look at your roof, your shade and your usage, then tell you honestly what solar can and cannot do for you.",
+    icon: "assessment",
   },
   {
     number: "02",
-    slug: "battery-installation",
-    title: "Battery Installation",
+    slug: "system-design",
+    title: "System Design",
     description:
-      "Get your battery installed correctly and get back on the road with confidence.",
-    icon: "installation",
+      "A layout sized to your actual consumption and the roof you have, not a package picked off a shelf.",
+    icon: "design",
   },
   {
     number: "03",
-    slug: "battery-inspection",
-    title: "Battery Inspection",
+    slug: "solar-installation",
+    title: "Solar Installation",
     description:
-      "Not sure what's causing the problem? A battery inspection can help identify what your vehicle needs.",
-    icon: "inspection",
+      "Careful mounting, proper cabling and safe earthing, finished tidily and commissioned before we leave.",
+    icon: "installation",
   },
   {
     number: "04",
-    slug: "battery-guidance",
-    title: "Battery Guidance",
+    slug: "grid-connection-support",
+    title: "Grid Connection Support",
     description:
-      "Choosing the right battery doesn't have to be complicated. Our team can help you make the right choice.",
-    icon: "guidance",
+      "Net metering and approval paperwork can be slow going. We help you work through it step by step.",
+    icon: "paperwork",
   },
   {
     number: "05",
     slug: "warranty-support",
     title: "Warranty Support",
     description:
-      "Need help with your battery warranty? We're here to guide you through the process.",
+      "If something needs a claim, we handle it with the manufacturer so you are not left chasing it yourself.",
     icon: "warranty",
   },
   {
     number: "06",
-    slug: "maintenance-support",
-    title: "Maintenance Support",
+    slug: "maintenance-and-cleaning",
+    title: "Maintenance & Cleaning",
     description:
-      "Simple guidance to help you get dependable performance and longer battery life.",
+      "Panels lose output when they are dirty. Simple scheduled cleaning and checks keep your system earning.",
     icon: "maintenance",
   },
 ];

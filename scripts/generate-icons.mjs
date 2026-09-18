@@ -41,14 +41,15 @@ const NAVY = "#102a43";
 const ACCENT = "#5b9dff";
 
 /**
- * The mark: a battery seen head-on inside a rounded navy tile.
+ * The mark: a solar module in perspective with the sun resting above it,
+ * inside a rounded navy tile. Matches components/layout/Logo.tsx.
  * `radius` of 0 gives the full-bleed variant for masked platforms.
  */
 const markSvg = (radius) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   <rect width="512" height="512" rx="${radius}" fill="${NAVY}"/>
-  <rect x="136" y="158" width="240" height="210" rx="48" fill="none" stroke="#ffffff" stroke-width="26"/>
-  <path d="M217 158v-28a15 15 0 0 1 15-15h48a15 15 0 0 1 15 15v28" fill="none" stroke="#ffffff" stroke-width="26" stroke-linecap="round"/>
-  <rect x="175" y="247" width="162" height="84" rx="24" fill="${ACCENT}"/>
+  <circle cx="256" cy="172" r="59" fill="${ACCENT}"/>
+  <path d="M114 382 L156 271h200l42 111z" fill="none" stroke="#ffffff" stroke-width="27" stroke-linejoin="round"/>
+  <path d="M138 326h236M256 271v111" stroke="#ffffff" stroke-width="22" stroke-linecap="round"/>
 </svg>`;
 
 const dataUri = (svg) =>
@@ -102,10 +103,10 @@ function buildIco(images) {
 }
 
 const manifest = {
-  name: "Cibi Power",
-  short_name: "Cibi Power",
+  name: "Cibi Solar",
+  short_name: "Cibi Solar",
   description:
-    "Car, bike, commercial, heavy-duty and inverter batteries, with honest guidance and dependable support.",
+    "Solar panels, inverters, batteries, water heaters and street lights, with honest guidance and dependable support.",
   start_url: "/",
   display: "standalone",
   background_color: "#f8fafc",

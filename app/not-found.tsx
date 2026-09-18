@@ -6,7 +6,7 @@ import { Icon } from "@/components/ui/Icon";
 export const metadata: Metadata = {
   title: "Page Not Found",
   description:
-    "The page you were looking for could not be found. Browse our battery range or get in touch and we will help.",
+    "The page you were looking for could not be found. Browse our solar range or get in touch and we will help.",
   robots: { index: false, follow: true },
 };
 

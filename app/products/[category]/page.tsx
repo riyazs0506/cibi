@@ -116,9 +116,9 @@ export default async function CategoryPage({ params }: RouteParams) {
 
       <CtaBand
         title="Not Sure Which One Fits?"
-        description="Tell us what you drive and we'll help you choose with confidence."
+        description="Tell us about your roof and your usage, and we'll help you choose with confidence."
         primary={{ label: "Contact Us", href: "/contact" }}
-        secondary={{ label: "Find Your Battery", href: "/#battery-finder" }}
+        secondary={{ label: "Design Your System", href: "/#solar-finder" }}
       />
     </>
   );

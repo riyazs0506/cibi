@@ -75,10 +75,11 @@ export async function submitEnquiry(
 
 /** Options for the "What do you need?" field. */
 export const enquiryReasons = [
-  "Choosing the right battery",
-  "Battery replacement",
-  "Battery installation",
-  "Battery inspection",
+  "A quote for rooftop solar",
+  "A solar water heater",
+  "Solar street lighting",
+  "Adding a battery or backup",
+  "Service or maintenance",
   "Warranty support",
   "Something else",
 ] as const;

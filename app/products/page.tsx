@@ -13,9 +13,9 @@ import { FaqAccordion } from "@/components/FaqAccordion";
 import { CategoryNav } from "@/components/sections/CategoryNav";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Batteries for Cars, Bikes, Commercial Vehicles & Home Backup",
+  title: "Solar Panels, Inverters, Batteries, Water Heaters & Street Lights",
   description:
-    "Explore our range of car, bike, commercial, heavy-duty and inverter batteries, with specifications, suitable applications and warranty details.",
+    "Explore our range of solar panels, inverters, batteries, water heaters and street lights, with full specifications, suitable applications and warranty details.",
   path: "/products",
 });
 
@@ -35,8 +35,8 @@ export default function ProductsPage() {
 
       <PageHero
         eyebrow="Products"
-        title="Find the Right Power for Your Vehicle."
-        description="Explore our range of batteries designed for cars, bikes, commercial vehicles, and backup power needs."
+        title="Find the Right Solar Setup for Your Roof."
+        description="Panels, inverters, batteries, water heaters and street lights - for homes, businesses and the spaces in between."
         crumbs={crumbs}
       >
         <CategoryNav />
@@ -47,8 +47,8 @@ export default function ProductsPage() {
         <div className="container-x">
           <SectionHeading
             eyebrow="Our Range"
-            title="Power for Every Need"
-            description="Explore reliable battery solutions designed for different vehicles and everyday power needs."
+            title="Everything a Solar Setup Needs"
+            description="Grouped by what each part actually does - generate, convert, store, heat or light."
             align="center"
             className="mb-10"
           />
@@ -62,8 +62,8 @@ export default function ProductsPage() {
         <div className="container-x">
           <SectionHeading
             eyebrow="Featured"
-            title="Our Featured Batteries"
-            description="Explore our range of reliable power solutions for different vehicles and applications."
+            title="Our Featured Products"
+            description="A closer look at the equipment we most often recommend, and what each one is good for."
             align="center"
             className="mb-10"
           />
@@ -85,8 +85,8 @@ export default function ProductsPage() {
         <div className="container-x">
           <SectionHeading
             eyebrow="Good to Know"
-            title="Choosing and Caring for a Battery"
-            description="A few things worth knowing before you decide. If your question isn't here, just ask us."
+            title="Choosing and Caring for Solar"
+            description="A few things worth knowing before you decide. If your question is not here, just ask us."
             align="center"
             className="mb-10"
           />
@@ -98,10 +98,10 @@ export default function ProductsPage() {
       </section>
 
       <CtaBand
-        title="Not Sure Which One You Need?"
-        description="Tell us about your vehicle and we'll help you find a battery that fits."
+        title="Not Sure Where to Start?"
+        description="Send us a recent electricity bill and we'll tell you honestly what solar can do for your roof."
         primary={{ label: "Contact Us", href: "/contact" }}
-        secondary={{ label: "Find Your Battery", href: "/#battery-finder" }}
+        secondary={{ label: "Design Your System", href: "/#solar-finder" }}
       />
     </>
   );

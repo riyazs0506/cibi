@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" width="640" height="420" role="img" aria-label="Cibi Ray 550 solar panel">
+  <title>Cibi Ray 550 solar panel</title>
+  <defs>
+    <linearGradient id="glassFace" x1="0" y1="0" x2="0.35" y2="1">
+      <stop offset="0%" stop-color="#2d5f8a"/>
+      <stop offset="55%" stop-color="#1c3d5a"/>
+      <stop offset="100%" stop-color="#102a43"/>
+    </linearGradient>
+    <linearGradient id="caseFront" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1c3d5a"/>
+      <stop offset="100%" stop-color="#102a43"/>
+    </linearGradient>
+    <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#e9f1f8"/>
+      <stop offset="100%" stop-color="#c3d3e2"/>
+    </linearGradient>
+    <radialGradient id="glow">
+      <stop offset="0%" stop-color="#5b9dff" stop-opacity="0.16"/>
+      <stop offset="70%" stop-color="#5b9dff" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#5b9dff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="640" height="420" fill="#f8fafc"/>
+  <circle cx="320" cy="210" r="248" fill="url(#glow)"/>
+  <ellipse cx="320" cy="348" rx="210" ry="15" fill="#102a43" opacity="0.08"/>
+  <line x1="551" y1="84" x2="559" y2="84" stroke="#5b9dff" stroke-width="3" stroke-linecap="round" opacity="0.5"/><line x1="543.1" y1="103.1" x2="548.7" y2="108.7" stroke="#5b9dff" stroke-width="3" stroke-linecap="round" opacity="0.5"/><line x1="524" y1="111" x2="524" y2="119" stroke="#5b9dff" stroke-width="3" stroke-linecap="round" opacity="0.5"/><line x1="504.9" y1="103.1" x2="499.3" y2="108.7" stroke="#5b9dff" stroke-width="3" stroke-linecap="round" opacity="0.5"/><line x1="497" y1="84" x2="489" y2="84" stroke="#5b9dff" stroke-width="3" stroke-linecap="round" opacity="0.5"/><line x1="504.9" y1="64.9" x2="499.3" y2="59.3" stroke="#5b9dff" stroke-width="3" stroke-linecap="round" opacity="0.5"/><line x1="524" y1="57" x2="524" y2="49" stroke="#5b9dff" stroke-width="3" stroke-linecap="round" opacity="0.5"/><line x1="543.1" y1="64.9" x2="548.7" y2="59.3" stroke="#5b9dff" stroke-width="3" stroke-linecap="round" opacity="0.5"/><circle cx="524" cy="84" r="20" fill="#5b9dff" opacity="0.85"/>
+  
+  <path d="M132 300 l0 30" stroke="#829ab1" stroke-width="7" stroke-linecap="round"/>
+  <path d="M438 300 l0 30" stroke="#829ab1" stroke-width="7" stroke-linecap="round"/>
+  <path d="M220.4 158 l0 74" stroke="#829ab1" stroke-width="6" stroke-linecap="round" opacity="0.75"/>
+  <path d="M489.6 158 l0 74" stroke="#829ab1" stroke-width="6" stroke-linecap="round" opacity="0.75"/>
+  
+
+  <!-- frame -->
+  <path d="M132 300 L438 300 L508 158 L202 158 Z" fill="url(#metal)" />
+  <!-- glass -->
+  <path d="M144.1 292.9 L432.9 292.9 L495.9 165.1 L207.1 165.1 Z" fill="url(#glassFace)"/>
+  <line x1="183" y1="300" x2="253" y2="158" stroke="#0a1e30" stroke-width="1.6" opacity="0.5"/><line x1="234" y1="300" x2="304" y2="158" stroke="#0a1e30" stroke-width="1.6" opacity="0.5"/><line x1="285" y1="300" x2="355" y2="158" stroke="#0a1e30" stroke-width="1.6" opacity="0.5"/><line x1="336" y1="300" x2="406" y2="158" stroke="#0a1e30" stroke-width="1.6" opacity="0.5"/><line x1="387" y1="300" x2="457" y2="158" stroke="#0a1e30" stroke-width="1.6" opacity="0.5"/><line x1="149.5" y1="264.5" x2="455.5" y2="264.5" stroke="#0a1e30" stroke-width="1.6" opacity="0.5"/><line x1="167" y1="229" x2="473" y2="229" stroke="#0a1e30" stroke-width="1.6" opacity="0.5"/><line x1="184.5" y1="193.5" x2="490.5" y2="193.5" stroke="#0a1e30" stroke-width="1.6" opacity="0.5"/>
+  <!-- a single soft sheen across the glass, not a shiny highlight -->
+  <path d="M207.1 165.1 L327 165.1 L163 254.6 Z" fill="#ffffff" opacity="0.07"/>
+
+  <!-- label plate on the frame edge -->
+  <rect x="236" y="316" width="168" height="44" rx="10" fill="#ffffff" opacity="0.97"/>
+  <rect x="236" y="316" width="168" height="4" rx="2" fill="#5b9dff"/>
+  <text x="320" y="337" text-anchor="middle" font-family="system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-size="17" font-weight="700" fill="#102a43">RAY 550</text>
+  <text x="320" y="353" text-anchor="middle" font-family="system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-size="12" font-weight="500" fill="#486581">550 W / Mono</text>
+</svg>

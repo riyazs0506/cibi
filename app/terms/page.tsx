@@ -36,7 +36,7 @@ export default function TermsPage() {
               Using this website
             </h2>
             <p>
-              This website is provided so you can learn about our battery range
+              This website is provided so you can learn about our solar range
               and services, and get in touch with us. You are welcome to browse
               it and to contact us about anything you see here.
             </p>
@@ -46,8 +46,12 @@ export default function TermsPage() {
             </h2>
             <p>
               We aim to keep product descriptions and specifications accurate
-              and up to date. Figures such as capacity, dimensions and weight
-              are nominal and may vary slightly between production batches.
+              and up to date. Figures such as rated power, capacity, dimensions
+              and weight are nominal, measured under standard test conditions,
+              and may vary slightly between production batches. Real-world
+              output is always lower than a standard-test rating, and nothing on
+              this website predicts what a particular roof will generate or
+              save.
             </p>
             <p>
               Nothing on this website is an offer to sell. Availability and
@@ -55,18 +59,18 @@ export default function TermsPage() {
             </p>
 
             <h2 className="mt-10" style={{ fontSize: "var(--text-h3)" }}>
-              The battery finder
+              The solar finder
             </h2>
             <p>
-              The battery finder is a guide based on typical fitment. It is
-              helpful for narrowing down a choice, but it is not a guarantee
-              that a given battery fits your vehicle. Physical size, terminal
-              layout and capacity requirements vary between variants and model
-              years.
+              The solar finder is a starting point based on typical usage. It is
+              useful for getting a sense of scale, but it is not a system design
+              and it does not predict what you will generate or save. Output
+              depends on your location, roof orientation, tilt, shading and the
+              weather, and none of those are known from a few dropdown answers.
             </p>
             <p>
-              Please confirm the exact fitment with us before purchasing. If you
-              are unsure,{" "}
+              Please treat its suggestion as a conversation starter rather than
+              a quotation. If you are unsure,{" "}
               <Link
                 href="/contact"
                 className="font-medium text-accent-deep underline-offset-4 hover:underline"
@@ -80,21 +84,24 @@ export default function TermsPage() {
               Warranty
             </h2>
             <p>
-              Warranty periods shown against each product refer to cover against
-              manufacturing defects. The full terms, including what is and is
-              not covered and how commercial use differs from private use, are
-              set out in the warranty documentation supplied with the product.
-              Keep your purchase invoice, as it is needed for any assessment.
+              Warranty periods shown against each product refer to cover
+              provided by the manufacturer. Panels carry a separate product
+              warranty and performance warranty, and these run for different
+              lengths of time. The full terms are set out in the documentation
+              supplied with the equipment. Keep your purchase invoice and
+              installation record, as both are needed for any claim.
             </p>
 
             <h2 className="mt-10" style={{ fontSize: "var(--text-h3)" }}>
               Safety
             </h2>
             <p>
-              Batteries store a large amount of energy and contain corrosive
-              material. Please follow the safety instructions supplied with your
-              battery, and have it fitted by someone competent to do so if you
-              are not confident doing it yourself.
+              Solar installations involve working at height and with DC wiring
+              that stays live whenever there is daylight, even when the system
+              is switched off. Panels, inverters and batteries should only be
+              installed, altered or removed by someone competent to do so.
+              Please follow the safety instructions supplied with your
+              equipment.
             </p>
 
             <h2 className="mt-10" style={{ fontSize: "var(--text-h3)" }}>
@@ -102,8 +109,8 @@ export default function TermsPage() {
             </h2>
             <p>
               The text, images and design on this website belong to us. Where we
-              refer to vehicle makes and models, we do so only to describe what
-              a battery is suitable for; those names remain the property of
+              refer to other manufacturers by name, we do so only to describe
+              equipment and compatibility; those names remain the property of
               their respective owners, and no association or endorsement is
               implied.
             </p>

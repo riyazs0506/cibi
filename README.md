@@ -1,104 +1,137 @@
-# Cibi Power — website
+# Cibi Solar
 
-A frontend-only marketing site for a battery retailer. It builds to plain
-HTML, CSS and JavaScript with **no server and no backend**: `next build`
-writes a folder you can drop on any static host or CDN.
+A frontend-only marketing site for a solar company: panels, inverters,
+batteries, water heaters and street lights.
 
-> **Not yet live.** The build is complete, but real business details (phone,
-> email, address, hours, domain) and the real product catalogue have not been
-> supplied yet. See **[SETUP.md](SETUP.md)** for the go-live checklist.
-
-## Stack
-
-| | |
-|---|---|
-| Framework | Next.js 16 (App Router, `output: "export"`) |
-| UI | React 19, TypeScript 5.8 |
-| Styling | Tailwind CSS v4 |
-| Fonts | Manrope + Inter, self-hosted at build time via `next/font` |
-| Images | SVG illustrations generated from a script — see [IMAGES.md](IMAGES.md) |
-
-No runtime dependencies beyond React and Next. Nothing is fetched from a third
-party at page load — no analytics, no font CDN, no tracking.
-
-## Commands
+Built with **Next.js 16 + React 19 + TypeScript + Tailwind v4**, exported as
+static HTML. There is no server, no database and no API — but the code is
+structured so a backend can be added later without rebuilding the frontend.
 
 ```bash
-npm install       # once
-npm run dev       # development server on http://localhost:3000
-npm run build     # regenerates images, then exports the static site to out/
-npm run start     # serves the built out/ folder locally, to check the real thing
-npm run typecheck # tsc --noEmit
-npm run assets    # regenerate images, OG card and icons without a full build
+npm install
+npm run dev          # http://localhost:3000
+npm run build        # static export into out/
+npm start            # serve out/ at http://localhost:4000
+npm run typecheck
+npm run assets       # regenerate illustrations + social card
 ```
 
-`npm run build` runs `npm run assets` first (via `prebuild`), so the images,
-social card and favicons are always in step with the code that draws them.
+> **Before going live, work through [SETUP.md](SETUP.md).** The brand name,
+> contact details, product catalogue and sizing rules are all placeholders or
+> samples, and are clearly marked as such.
+
+---
+
+## How it is organised
+
+```
+app/                      One folder per route; every page is pre-rendered
+  layout.tsx              Fonts, header/footer, site-wide structured data
+  page.tsx                Home
+  about/ services/        Static pages
+  products/               Index, [category], [category]/[product]
+  contact/                Contact details + enquiry form
+  privacy-policy/ terms/  Legal
+  not-found.tsx           404
+  sitemap.ts robots.ts    Generated at build time
+  globals.css             Design tokens — the single source of the palette
+
+data/                     Content, fully separated from presentation
+  site.ts                 Brand + contact  ← edit this first
+  categories.ts           The five product categories
+  products.ts             The catalogue (sample)
+  services.ts  faqs.ts    Services and FAQs
+  finder.ts               Solar finder sizing rules (sample)
+  navigation.ts           Header/footer links, derived from categories
+
+components/
+  ui/                     Button, Icon, Reveal, SectionHeading, Breadcrumb
+  layout/                 Header, Footer, Logo, MobileCtaBar, ContactChannels
+  cards/                  ProductCard, CategoryCard, ServiceCard
+  sections/               PageHero, CtaBand, CategoryGrid, CategoryNav
+  SolarFinder.tsx         The interactive finder
+  ContactForm.tsx         Validated enquiry form
+  FaqAccordion.tsx        Accessible disclosure list
+
+lib/
+  seo.ts                  buildMetadata() — every page's title/canonical/OG
+  schema.ts               JSON-LD builders
+  enquiry.ts              The single backend integration point
+
+scripts/
+  generate-images.mjs     Product/category/scene illustrations
+  generate-og-image.mjs   Social preview card
+  generate-icons.mjs      Favicon, app icons, web manifest
+  flatten-rsc-payloads.mjs  Post-build fix, see below
+```
+
+`npm run build` runs these automatically: `prebuild` regenerates the assets and
+`postbuild` applies the RSC payload fix.
+
+**Data never lives in components.** Adding a product means editing
+`data/products.ts` and adding one line to the image generator — the routes,
+sitemap, category pages, finder and footer all pick it up automatically.
+
+## Routes
+
+```
+/                                     /products/[category]
+/about                                /products/[category]/[product]
+/services                             /privacy-policy
+/products                             /terms
+/contact                              404
+```
+
+31 pages in total: 5 categories × their products, plus the static pages.
+
+## Notable decisions
+
+**Static export, not a SPA.** Every route is real HTML on disk. Product
+specifications are in the markup, not behind JavaScript, so they are indexable.
+
+**Nothing is invented.** Unset contact details are not rendered and are omitted
+from structured data. `Product` schema carries no `offers`, `aggregateRating`
+or `review`, because none of those exist yet. `LocalBusiness` is only emitted
+once a real address is configured. The finder presents a starting point, never
+a promise about generation or savings.
+
+**The form does not lie.** It validates fully, then says plainly that enquiry
+delivery is not connected yet and offers direct contact instead. Wire up
+`lib/enquiry.ts` and it switches to a normal thank-you.
+
+**Progressive enhancement.** Scroll-reveal animations hide content only when
+JavaScript is available — a `<noscript>` override in the layout keeps
+everything visible otherwise. Above-the-fold content uses a CSS-only animation
+so it is never held back by hydration (which would otherwise delay LCP).
+
+**Accessibility is not optional.** Semantic landmarks, one `h1` per page, real
+`<button>` and `<a>` elements, labelled form controls, visible focus rings, a
+skip link, `aria-live` on the finder result, and a global
+`prefers-reduced-motion` override that strips every transition.
+
+**No runtime dependencies beyond React and Next.** Icons are inline SVG,
+illustrations are generated vectors, fonts are self-hosted by `next/font`. No
+tracking, no cookies, no third-party requests at runtime.
+
+**One upstream workaround.** Next 16.3.4's static export writes route prefetch
+payloads to a path its own client router does not ask for, so every `<Link>`
+coming into view 404s — about seventy failed requests and a console full of
+errors on the home page alone. `scripts/flatten-rsc-payloads.mjs` runs after
+the build and copies each payload to the path the router actually requests.
+It reports how many files it wrote; when a future Next release reports **zero**,
+the script is no longer needed and can be removed along with the `postbuild`
+entry in `package.json`.
 
 ## Deploying
 
-The build output is the `out/` folder — static files, nothing else.
+The `out/` folder is a plain static site. Upload it to any static host —
+Netlify, Vercel, Cloudflare Pages, S3, or ordinary shared hosting.
+
+Set the domain at build time so canonicals and the sitemap are correct:
 
 ```bash
-NEXT_PUBLIC_SITE_URL=https://your-real-domain.com npm run build
+NEXT_PUBLIC_SITE_URL=https://www.your-domain.com npm run build
 ```
 
-Then upload `out/` to any static host (Netlify, Vercel, Cloudflare Pages,
-S3 + CloudFront, or plain nginx). No Node process runs in production.
-
-**Set `NEXT_PUBLIC_SITE_URL`.** It is baked in at build time and drives every
-canonical URL, the sitemap and the social card links. Without it the build
-falls back to a placeholder domain and the canonicals will be wrong.
-
-`trailingSlash: true` is on, so every route is emitted as
-`about/index.html` rather than `about.html`. That gives clean URLs on hosts
-that don't rewrite paths for you.
-
-## Project layout
-
-```
-app/                 routes; one folder per page, plus sitemap.ts and robots.ts
-components/
-  layout/            header, footer, mobile CTA bar, logo, dev-only setup banner
-  sections/          page-level blocks (hero, category grid, CTA band)
-  cards/             product, category and service cards
-  ui/                button, icon, breadcrumb, heading, scroll reveal
-  seo/               JSON-LD injection
-data/                all copy and catalogue content — no presentation code
-lib/                 SEO helpers, schema.org builders, enquiry submission
-scripts/             image, social-card and icon generators
-public/images/       generated artwork
-```
-
-**Content lives in `data/`, not in components.** Product details, categories,
-services, FAQs and the battery-finder fitment table are plain TypeScript
-objects. Editing copy or adding a product means touching one data file; no
-component needs to change.
-
-## What works, and what is deliberately inert
-
-- **Battery finder** — cascading vehicle selector that suggests a product. The
-  fitment mapping is illustrative, not a verified fitment chart, and the result
-  card says so and points the visitor to the team.
-- **Contact form** — fully built and validated client-side. It has nowhere to
-  send anything yet, so on submit it says plainly that it isn't connected
-  rather than pretending the message was delivered. Connect a backend by
-  setting `NEXT_PUBLIC_ENQUIRY_ENDPOINT`; only `lib/enquiry.ts` needs to change.
-- **Contact details** — phone, email, address and opening hours are `null`
-  until real values arrive. Every block that would show them hides itself, and
-  they are left out of the structured data. Nothing is invented.
-
-## SEO
-
-Per-page titles, descriptions and canonicals; Open Graph and Twitter cards; a
-generated `sitemap.xml` and `robots.txt`; and JSON-LD for Organization,
-WebSite, LocalBusiness, Product, BreadcrumbList and FAQPage. The
-LocalBusiness entry deliberately omits address, phone and hours while they are
-unset — publishing placeholder values would be worse than publishing none.
-
-## Accessibility
-
-One `<h1>` per page, a skip link, visible keyboard focus rings, labelled form
-controls with errors tied to their inputs via `aria-describedby`, and
-`prefers-reduced-motion` honoured throughout. Scroll animations degrade to
-plain visible content without JavaScript.
+`trailingSlash` is enabled, so routes are served as `/about/` and canonical
+URLs match exactly.

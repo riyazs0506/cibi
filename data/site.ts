@@ -17,17 +17,17 @@
 
 /** Canonical origin. Override at build time: NEXT_PUBLIC_SITE_URL=https://… */
 export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.cibipower.com"
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.cibisolar.com"
 ).replace(/\/$/, "");
 
 export const brand = {
   /** TODO(client): confirm the exact trading name. */
-  name: "Cibi Power",
+  name: "Cibi Solar",
   /** Registered legal entity, if it differs from the trading name. */
-  legalName: "Cibi Power",
-  tagline: "Reliable power for every journey.",
+  legalName: "Cibi Solar",
+  tagline: "Clean power for every day.",
   description:
-    "Quality car, bike, commercial, heavy-duty and inverter batteries, with honest guidance and dependable after-sales support.",
+    "Solar panels, inverters, batteries, water heaters and street lights, with honest guidance, careful installation and dependable after-sales support.",
 } as const;
 
 export interface PostalAddress {
@@ -64,7 +64,7 @@ export const contact: {
 } = {
   phone: null, // TODO(client): e.g. "+91 98765 43210"
   phoneHref: null, // TODO(client): E.164 form for tel: links, e.g. "+919876543210"
-  email: null, // TODO(client): e.g. "hello@cibipower.com"
+  email: null, // TODO(client): e.g. "hello@cibisolar.com"
   address: null, // TODO(client): full postal address
   openingHours: [], // TODO(client): real opening hours
   mapUrl: null, // TODO(client): link to the business map listing

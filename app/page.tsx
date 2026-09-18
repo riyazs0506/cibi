@@ -1,4 +1,3 @@
-import Link from "next/link";
 import type { Metadata } from "next";
 import { brand } from "@/data/site";
 import { getFeaturedProducts } from "@/data/products";
@@ -10,46 +9,48 @@ import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ProductCard } from "@/components/cards/ProductCard";
 import { ServiceCard } from "@/components/cards/ServiceCard";
-import { BatteryFinder } from "@/components/BatteryFinder";
+import { SolarFinder } from "@/components/SolarFinder";
 import { CategoryGrid } from "@/components/sections/CategoryGrid";
 import { CtaBand } from "@/components/sections/CtaBand";
 
 export const metadata: Metadata = buildMetadata({
   isHome: true,
-  title: `${brand.name} | Car, Bike & Inverter Batteries You Can Trust`,
+  title: `${brand.name} | Solar Panels, Inverters & Water Heaters`,
   description:
-    "Quality car, bike, commercial, heavy-duty and inverter batteries, with honest guidance, simple battery replacement and dependable warranty support.",
+    "Rooftop solar for homes and businesses - panels, inverters, batteries, water heaters and street lights, with honest sizing advice, careful installation and dependable after-sales support.",
   path: "/",
 });
 
 const heroTrust = [
-  "Quality Products",
-  "Reliable Support",
-  "Warranty Assistance",
+  "Quality Equipment",
+  "Honest Sizing",
+  "Warranty Support",
 ];
 
 const benefits: { icon: IconName; title: string; description: string }[] = [
   {
     icon: "shield",
-    title: "Quality You Can Trust",
+    title: "Equipment That Lasts",
     description:
-      "Carefully selected products designed to meet your everyday needs.",
+      "Panels and inverters chosen to still be working properly in twenty years, not just on day one.",
   },
   {
     icon: "compass",
-    title: "The Right Choice",
+    title: "Sized Honestly",
     description:
-      "Helping you find a battery suited to your vehicle and requirements.",
+      "A system built around the power you actually use. If solar is a poor fit for your roof, we will say so.",
   },
   {
     icon: "support",
-    title: "Helpful Support",
-    description: "Friendly guidance whenever you need it.",
+    title: "Clear Answers",
+    description:
+      "Plain explanations of what solar will and will not do, with no jargon and no pressure.",
   },
   {
     icon: "badge",
-    title: "Peace of Mind",
-    description: "Warranty assistance and dependable after-sales support.",
+    title: "Looked After",
+    description:
+      "Cleaning, checks and warranty claims handled for you long after the installation is done.",
   },
 ];
 
@@ -74,14 +75,14 @@ export default function HomePage() {
 
             <Reveal onLoad delay={60}>
               <h1 style={{ fontSize: "var(--text-h1)" }} className="max-w-xl">
-                Reliable Power for Every Journey.
+                Clean Power for Every Day.
               </h1>
             </Reveal>
 
             <Reveal onLoad delay={120}>
               <p className="max-w-lg text-lg leading-relaxed text-slate">
-                Quality batteries designed to keep your vehicle moving with
-                confidence, every day.
+                Solar built around your roof and your actual usage, installed
+                carefully and looked after properly.
               </p>
             </Reveal>
 
@@ -115,8 +116,8 @@ export default function HomePage() {
             {/* The one image on the page that must not be lazy-loaded: it is
                 the Largest Contentful Paint element. */}
             <img
-              src="/images/hero-premium-car-battery.svg"
-              alt="A premium 12 volt maintenance-free car battery from Cibi Power"
+              src="/images/hero-rooftop-solar-system.svg"
+              alt="A rooftop solar array with panels angled toward the sun"
               width={720}
               height={560}
               fetchPriority="high"
@@ -127,19 +128,19 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* =========================== BATTERY FINDER ========================== */}
-      <section id="battery-finder" className="section-y scroll-mt-24">
+      {/* ============================ SOLAR FINDER =========================== */}
+      <section id="solar-finder" className="section-y scroll-mt-24">
         <div className="container-x">
           <SectionHeading
-            eyebrow="Battery Finder"
-            title="Find the Right Battery for Your Needs"
-            description="Choose the battery that suits your vehicle and enjoy dependable performance with the support you can count on."
+            eyebrow="Solar Finder"
+            title="Find the Right Setup for Your Needs"
+            description="Answer a few questions and we'll point you to a sensible starting point - then we'll work out the details with you."
             align="center"
             className="mb-10"
           />
 
           <Reveal delay={80}>
-            <BatteryFinder />
+            <SolarFinder />
           </Reveal>
         </div>
       </section>
@@ -149,8 +150,8 @@ export default function HomePage() {
         <div className="container-x">
           <SectionHeading
             eyebrow="Our Range"
-            title="Power for Every Need"
-            description="Explore reliable battery solutions designed for different vehicles and everyday power needs."
+            title="Everything a Solar Setup Needs"
+            description="Panels to generate, inverters to convert, batteries to store, and solar heating and lighting for everything else."
             align="center"
             className="mb-10"
           />
@@ -165,8 +166,8 @@ export default function HomePage() {
           <div className="mb-10 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
             <SectionHeading
               eyebrow="Featured"
-              title="Our Featured Batteries"
-              description="Explore our range of reliable power solutions for different vehicles and applications."
+              title="Our Featured Products"
+              description="A closer look at the equipment we most often recommend, and what each one is good for."
               className="mb-0"
             />
 
@@ -180,7 +181,7 @@ export default function HomePage() {
           <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {featured.map((product, index) => (
               <ProductCard
-                key={product.slug}
+                key={`${product.category}-${product.slug}`}
                 product={product}
                 delay={index * 70}
               />
@@ -194,8 +195,8 @@ export default function HomePage() {
         <div className="container-x">
           <SectionHeading
             eyebrow="Why Choose Us"
-            title="Power Made Simple."
-            description="From choosing the right battery to getting the support you need, we make every step simple and dependable."
+            title="Solar Made Simple."
+            description="From the first look at your roof to the years after it is running, we keep every step clear and dependable."
             align="center"
             className="mb-10"
           />
@@ -227,8 +228,8 @@ export default function HomePage() {
         <div className="container-x grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <Reveal>
             <img
-              src="/images/about-battery-fitting-service.svg"
-              alt="A battery being fitted to a vehicle in a clean service bay"
+              src="/images/about-solar-installation.svg"
+              alt="Solar panels being installed on a clean residential rooftop"
               width={640}
               height={480}
               loading="lazy"
@@ -241,7 +242,7 @@ export default function HomePage() {
             <SectionHeading
               eyebrow="About Us"
               title="Built on Reliability"
-              description="We believe finding the right battery should be simple. With quality products, honest guidance and dependable support, we help customers choose power solutions they can rely on."
+              description="We believe going solar should be a clear decision, not a leap of faith. With quality equipment, honest sizing and steady support, we help people move to solar with confidence."
               className="mb-0"
             />
 
@@ -261,7 +262,7 @@ export default function HomePage() {
             <SectionHeading
               eyebrow="Services"
               title="Here When You Need Us"
-              description="From choosing the right battery to help after your purchase, we keep battery care simple."
+              description="From the first roof survey to the cleaning years later, we handle the parts that make solar work."
               className="mb-0"
             />
 
@@ -286,8 +287,8 @@ export default function HomePage() {
 
       {/* =============================== FINAL CTA =========================== */}
       <CtaBand
-        title="Ready for Reliable Power?"
-        description="Find the right battery for your vehicle or speak with our team for friendly guidance."
+        title="Ready for Cleaner Power?"
+        description="Send us a recent electricity bill and we'll tell you honestly what solar can do for your roof."
         primary={{ label: "Explore Products", href: "/products" }}
         secondary={{ label: "Contact Us", href: "/contact" }}
       />

@@ -67,7 +67,7 @@ export function organizationSchema(): JsonLdNode {
     description: brand.description,
     logo: {
       "@type": "ImageObject",
-      url: `${absoluteUrl("/")}images/cibi-power-logo.svg`,
+      url: `${absoluteUrl("/")}images/cibi-solar-logo.svg`,
     },
     telephone: contact.phone ?? undefined,
     email: contact.email ?? undefined,
@@ -102,7 +102,7 @@ export function localBusinessSchema(): JsonLdNode | null {
     name: brand.name,
     url: absoluteUrl("/"),
     description: brand.description,
-    image: `${absoluteUrl("/")}images/cibi-power-logo.svg`,
+    image: `${absoluteUrl("/")}images/cibi-solar-logo.svg`,
     address,
     telephone: contact.phone ?? undefined,
     email: contact.email ?? undefined,
@@ -152,9 +152,9 @@ export function productSchema(product: Product): JsonLdNode {
     brand: { "@type": "Brand", name: brand.name },
     manufacturer: { "@id": ORGANIZATION_ID },
     additionalProperty: [
-      { name: "Battery type", value: product.type },
+      { name: "Technology", value: product.type },
       { name: "Capacity", value: product.capacity },
-      { name: "Voltage", value: product.voltage },
+      { name: "Output", value: product.output },
       { name: "Warranty", value: product.warranty },
       { name: "Suitable application", value: product.application },
     ].map((property) => ({

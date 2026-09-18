@@ -8,9 +8,9 @@ import { PageHero } from "@/components/sections/PageHero";
 import { CtaBand } from "@/components/sections/CtaBand";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Battery Services",
+  title: "Solar Services",
   description:
-    "Battery replacement, installation, inspection, guidance, warranty support and maintenance help - we make battery care simple.",
+    "Site assessment, system design, solar installation, grid connection support, warranty help and maintenance - we make going solar simple.",
   path: "/services",
 });
 
@@ -23,8 +23,8 @@ export default function ServicesPage() {
 
       <PageHero
         eyebrow="Services"
-        title="Reliable Service, Whenever You Need It."
-        description="From choosing the right battery to getting help after your purchase, we're here to make battery care simple."
+        title="From First Survey to Long After."
+        description="Going solar is more than buying panels. These are the parts we take care of so the system you end up with actually works."
         crumbs={crumbs}
       />
 
@@ -46,7 +46,7 @@ export default function ServicesPage() {
 
       <CtaBand
         title="Need a Little Help?"
-        description="Tell us what you need, and we'll help you find the right solution."
+        description="Tell us what you need, and we will help you find the right solution."
         primary={{ label: "Contact Us", href: "/contact" }}
         secondary={{ label: "Explore Products", href: "/products" }}
       />

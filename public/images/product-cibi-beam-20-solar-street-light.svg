@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" width="640" height="420" role="img" aria-label="Cibi Beam 20 solar street light">
+  <title>Cibi Beam 20 solar street light</title>
+  <defs>
+    <linearGradient id="glassFace" x1="0" y1="0" x2="0.35" y2="1">
+      <stop offset="0%" stop-color="#2d5f8a"/>
+      <stop offset="55%" stop-color="#1c3d5a"/>
+      <stop offset="100%" stop-color="#102a43"/>
+    </linearGradient>
+    <linearGradient id="caseFront" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1c3d5a"/>
+      <stop offset="100%" stop-color="#102a43"/>
+    </linearGradient>
+    <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#e9f1f8"/>
+      <stop offset="100%" stop-color="#c3d3e2"/>
+    </linearGradient>
+    <radialGradient id="glow">
+      <stop offset="0%" stop-color="#65c9a5" stop-opacity="0.16"/>
+      <stop offset="70%" stop-color="#65c9a5" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#65c9a5" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="640" height="420" fill="#f8fafc"/>
+  <circle cx="320" cy="210" r="248" fill="url(#glow)"/>
+  <ellipse cx="320" cy="350" rx="150" ry="15" fill="#102a43" opacity="0.08"/>
+  <line x1="121" y1="84" x2="129" y2="84" stroke="#65c9a5" stroke-width="3" stroke-linecap="round" opacity="0.5"/><line x1="113.7" y1="101.7" x2="119.3" y2="107.3" stroke="#65c9a5" stroke-width="3" stroke-linecap="round" opacity="0.5"/><line x1="96" y1="109" x2="96" y2="117" stroke="#65c9a5" stroke-width="3" stroke-linecap="round" opacity="0.5"/><line x1="78.3" y1="101.7" x2="72.7" y2="107.3" stroke="#65c9a5" stroke-width="3" stroke-linecap="round" opacity="0.5"/><line x1="71" y1="84" x2="63" y2="84" stroke="#65c9a5" stroke-width="3" stroke-linecap="round" opacity="0.5"/><line x1="78.3" y1="66.3" x2="72.7" y2="60.7" stroke="#65c9a5" stroke-width="3" stroke-linecap="round" opacity="0.5"/><line x1="96" y1="59" x2="96" y2="51" stroke="#65c9a5" stroke-width="3" stroke-linecap="round" opacity="0.5"/><line x1="113.7" y1="66.3" x2="119.3" y2="60.7" stroke="#65c9a5" stroke-width="3" stroke-linecap="round" opacity="0.5"/><circle cx="96" cy="84" r="18" fill="#65c9a5" opacity="0.85"/>
+  <path d="M250 108 L396 92 L408 142 L262 158 Z" fill="url(#metal)"/>
+       <path d="M258 115 L390 100 L400 135 L268 151 Z" fill="url(#glassFace)"/>
+       <path d="M264 133 L394 118 M322 107 L330 145" stroke="#0a1e30" stroke-width="1.6" opacity="0.5"/>
+
+  <!-- pole -->
+  <path d="M320 198 L320 330" stroke="#486581" stroke-width="11" stroke-linecap="round"/>
+  <rect x="292" y="326" width="56" height="16" rx="6" fill="#102a43" opacity="0.18"/>
+
+  <!-- luminaire -->
+  <path d="M270 172 L370 172 L358 198 L282 198 Z" fill="url(#caseFront)"/>
+  <rect x="284" y="196" width="72" height="7" rx="3.5" fill="#65c9a5"/>
+
+  <!-- light cone, very soft -->
+  <path d="M286 204 L354 204 L412 330 L228 330 Z" fill="#65c9a5" opacity="0.1"/>
+
+  <!-- label plate on the pole base -->
+  <rect x="230" y="248" width="180" height="48" rx="10" fill="#f8fafc" opacity="0.97"/>
+  <rect x="230" y="248" width="180" height="4" rx="2" fill="#65c9a5"/>
+  <text x="320" y="271" text-anchor="middle" font-family="system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-size="17" font-weight="700" fill="#102a43">BEAM 20</text>
+  <text x="320" y="288" text-anchor="middle" font-family="system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-size="12" font-weight="500" fill="#486581">20 W / All-in-one</text>
+</svg>

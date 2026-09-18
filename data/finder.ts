@@ -1,289 +1,338 @@
 /* =============================================================================
- * BATTERY FINDER DATA
+ * SOLAR FINDER DATA
  * =============================================================================
  *
- *  NOTE: SAMPLE FITMENT DATA - replace with the client's verified fitment
- *  chart before launch.
+ *  NOTE: SAMPLE SIZING GUIDE - replace with the client's own sizing rules.
  *
- *  Vehicle makes and models below are real and referenced only to describe
- *  what a battery fits. The mapping from a vehicle to a recommended product is
- *  illustrative, which is why the finder always presents its result as a
- *  suggestion to confirm rather than a guarantee of fitment.
+ *  The finder narrows a visitor towards a sensible starting point. It is not a
+ *  design tool and does not pretend to be one: real sizing needs the actual
+ *  bill, the actual roof and a shade study, which is exactly what the result
+ *  card says.
  *
- *  The shape here mirrors what a fitment API would return, so this file can be
- *  swapped for a fetch without touching the BatteryFinder component.
+ *  Shape mirrors what a sizing API would return, so this file can be swapped
+ *  for a fetch without touching the SolarFinder component.
  * ========================================================================== */
 
-/** Latest model year offered by the selectors. Bump when the catalogue rolls. */
-export const CATALOGUE_YEAR = 2026;
+export type FinderCategoryId =
+  | "home"
+  | "business"
+  | "water-heating"
+  | "outdoor-lighting";
 
-export type FinderCategoryId = "car" | "bike" | "commercial" | "home-backup";
-
-export interface FinderModel {
+export interface FinderOption {
   value: string;
   label: string;
-  /** Earliest model year offered for this entry. */
-  yearFrom: number;
-  /** Recommended product, as `${categorySlug}/${productSlug}`. */
-  recommends: string;
+  /**
+   * Products this choice implies, as `${categorySlug}/${productSlug}`.
+   * Empty means the choice adds no product of its own.
+   */
+  recommends: string[];
+  /**
+   * Optional line surfaced in the result - used for sizing guidance that is a
+   * range rather than a product, e.g. "roughly a 3 to 5 kW system".
+   */
+  note?: string;
 }
 
-export interface FinderGroup {
-  value: string;
+export interface FinderStep {
+  /** Used for the select id and name. Unique within a category. */
+  id: string;
   label: string;
-  models: FinderModel[];
+  placeholder: string;
+  options: FinderOption[];
 }
 
 export interface FinderCategoryConfig {
   id: FinderCategoryId;
   label: string;
-  /** Short line shown under the category name on the selector tile. */
+  /** Short line under the category name on the selector tile. */
   helper: string;
-  /**
-   * Labels for the cascading selects. `third` is null where a year is not a
-   * meaningful question (home backup), and that select is then not rendered.
-   */
-  fieldLabels: { first: string; second: string; third: string | null };
-  groups: FinderGroup[];
+  /** Two or three cascading steps. */
+  steps: FinderStep[];
 }
 
 export const finderCategories: FinderCategoryConfig[] = [
+  /* -------------------------------- HOME -------------------------------- */
   {
-    id: "car",
-    label: "Car",
-    helper: "Hatchbacks, sedans and SUVs",
-    fieldLabels: {
-      first: "Vehicle Brand",
-      second: "Vehicle Model",
-      third: "Year",
-    },
-    groups: [
+    id: "home",
+    label: "Home",
+    helper: "Rooftop solar for your house",
+    steps: [
       {
-        value: "maruti-suzuki",
-        label: "Maruti Suzuki",
-        models: [
-          { value: "alto-k10", label: "Alto K10", yearFrom: 2022, recommends: "car-batteries/drive-35" },
-          { value: "swift", label: "Swift", yearFrom: 2018, recommends: "car-batteries/drive-35" },
-          { value: "baleno", label: "Baleno", yearFrom: 2019, recommends: "car-batteries/drive-45" },
-          { value: "brezza", label: "Brezza", yearFrom: 2022, recommends: "car-batteries/drive-45" },
-          { value: "ertiga", label: "Ertiga", yearFrom: 2018, recommends: "car-batteries/drive-45" },
+        id: "home-size",
+        label: "Home Size",
+        placeholder: "Select home size",
+        options: [
+          {
+            value: "1bhk",
+            label: "1 BHK or small home",
+            recommends: ["solar-panels/ray-400"],
+          },
+          {
+            value: "2bhk",
+            label: "2 BHK",
+            recommends: ["solar-panels/ray-550"],
+          },
+          {
+            value: "3bhk",
+            label: "3 BHK",
+            recommends: ["solar-panels/ray-550"],
+          },
+          {
+            value: "villa",
+            label: "Villa or large home",
+            recommends: ["solar-panels/ray-550"],
+          },
         ],
       },
       {
-        value: "hyundai",
-        label: "Hyundai",
-        models: [
-          { value: "grand-i10-nios", label: "Grand i10 Nios", yearFrom: 2019, recommends: "car-batteries/drive-35" },
-          { value: "i20", label: "i20", yearFrom: 2020, recommends: "car-batteries/drive-45" },
-          { value: "venue", label: "Venue", yearFrom: 2019, recommends: "car-batteries/drive-45" },
-          { value: "creta", label: "Creta", yearFrom: 2020, recommends: "car-batteries/drive-65" },
+        id: "monthly-bill",
+        label: "Monthly Electricity Bill",
+        placeholder: "Select your usual bill",
+        options: [
+          {
+            value: "under-1500",
+            label: "Under ₹1,500",
+            recommends: ["solar-inverters/flow-3kw-ongrid"],
+            note: "Usage at this level usually suits a system of roughly 1 to 2 kW.",
+          },
+          {
+            value: "1500-3000",
+            label: "₹1,500 - ₹3,000",
+            recommends: ["solar-inverters/flow-3kw-ongrid"],
+            note: "Usage at this level usually suits a system of roughly 2 to 3 kW.",
+          },
+          {
+            value: "3000-6000",
+            label: "₹3,000 - ₹6,000",
+            recommends: ["solar-inverters/flow-5kw-hybrid"],
+            note: "Usage at this level usually suits a system of roughly 3 to 5 kW.",
+          },
+          {
+            value: "over-6000",
+            label: "Over ₹6,000",
+            recommends: ["solar-inverters/flow-10kw-ongrid"],
+            note: "Usage at this level usually suits a system of roughly 5 to 10 kW.",
+          },
         ],
       },
       {
-        value: "tata",
-        label: "Tata",
-        models: [
-          { value: "tiago", label: "Tiago", yearFrom: 2019, recommends: "car-batteries/drive-35" },
-          { value: "altroz", label: "Altroz", yearFrom: 2020, recommends: "car-batteries/drive-45" },
-          { value: "nexon", label: "Nexon", yearFrom: 2020, recommends: "car-batteries/drive-45" },
-          { value: "harrier", label: "Harrier", yearFrom: 2019, recommends: "car-batteries/drive-65" },
-        ],
-      },
-      {
-        value: "mahindra",
-        label: "Mahindra",
-        models: [
-          { value: "xuv300", label: "XUV300", yearFrom: 2019, recommends: "car-batteries/drive-45" },
-          { value: "thar", label: "Thar", yearFrom: 2020, recommends: "car-batteries/drive-65" },
-          { value: "scorpio-n", label: "Scorpio-N", yearFrom: 2022, recommends: "car-batteries/drive-65" },
-          { value: "xuv700", label: "XUV700", yearFrom: 2021, recommends: "car-batteries/drive-agm-60" },
-        ],
-      },
-      {
-        value: "honda",
-        label: "Honda",
-        models: [
-          { value: "amaze", label: "Amaze", yearFrom: 2018, recommends: "car-batteries/drive-35" },
-          { value: "city", label: "City", yearFrom: 2020, recommends: "car-batteries/drive-45" },
-          { value: "elevate", label: "Elevate", yearFrom: 2023, recommends: "car-batteries/drive-45" },
-        ],
-      },
-      {
-        value: "toyota",
-        label: "Toyota",
-        models: [
-          { value: "glanza", label: "Glanza", yearFrom: 2019, recommends: "car-batteries/drive-35" },
-          { value: "hyryder", label: "Urban Cruiser Hyryder", yearFrom: 2022, recommends: "car-batteries/drive-agm-60" },
-          { value: "innova-crysta", label: "Innova Crysta", yearFrom: 2018, recommends: "car-batteries/drive-65" },
+        id: "backup",
+        label: "Backup During Power Cuts",
+        placeholder: "Select what you need",
+        options: [
+          {
+            value: "none",
+            label: "Not needed - just lower bills",
+            /* Adds nothing: the on-grid inverter chosen above stands. */
+            recommends: [],
+          },
+          {
+            value: "essentials",
+            label: "Essentials only",
+            /* A later step overrides the same category, so this swaps the
+               on-grid inverter for a hybrid one and adds storage. */
+            recommends: [
+              "solar-inverters/flow-5kw-hybrid",
+              "solar-batteries/store-li-5",
+            ],
+          },
+          {
+            value: "most-of-house",
+            label: "Most of the house",
+            recommends: [
+              "solar-inverters/flow-5kw-hybrid",
+              "solar-batteries/store-li-10",
+            ],
+          },
+          {
+            value: "off-grid",
+            label: "Fully off-grid, no connection",
+            recommends: [
+              "solar-inverters/flow-5kw-hybrid",
+              "solar-batteries/store-li-10",
+            ],
+            note: "An off-grid system needs careful sizing - we will work through your loads with you before recommending anything.",
+          },
         ],
       },
     ],
   },
 
+  /* ------------------------------ BUSINESS ------------------------------ */
   {
-    id: "bike",
-    label: "Bike",
-    helper: "Motorcycles and scooters",
-    fieldLabels: {
-      first: "Vehicle Brand",
-      second: "Vehicle Model",
-      third: "Year",
-    },
-    groups: [
+    id: "business",
+    label: "Business",
+    helper: "Solar for shops, offices and units",
+    steps: [
       {
-        value: "hero",
-        label: "Hero",
-        models: [
-          { value: "splendor-plus", label: "Splendor Plus", yearFrom: 2019, recommends: "bike-batteries/ride-5" },
-          { value: "hf-deluxe", label: "HF Deluxe", yearFrom: 2019, recommends: "bike-batteries/ride-5" },
-          { value: "xtreme-125r", label: "Xtreme 125R", yearFrom: 2024, recommends: "bike-batteries/ride-5" },
-          { value: "xpulse-200", label: "Xpulse 200", yearFrom: 2019, recommends: "bike-batteries/ride-9" },
+        id: "business-type",
+        label: "Type of Premises",
+        placeholder: "Select premises type",
+        options: [
+          {
+            value: "shop",
+            label: "Shop or showroom",
+            recommends: ["solar-panels/ray-550"],
+          },
+          {
+            value: "office",
+            label: "Office",
+            recommends: ["solar-panels/ray-550"],
+          },
+          {
+            value: "workshop",
+            label: "Workshop or small unit",
+            recommends: ["solar-panels/ray-550"],
+          },
+          {
+            value: "ground-mount",
+            label: "Open land or carport",
+            recommends: ["solar-panels/ray-bifacial-585"],
+            note: "Raised and ground-mounted arrays can use bifacial modules, which also generate from light reflected off the surface below.",
+          },
         ],
       },
       {
-        value: "honda-two-wheeler",
-        label: "Honda",
-        models: [
-          { value: "shine", label: "Shine", yearFrom: 2020, recommends: "bike-batteries/ride-5" },
-          { value: "activa-6g", label: "Activa 6G", yearFrom: 2020, recommends: "bike-batteries/ride-5" },
-          { value: "sp-125", label: "SP 125", yearFrom: 2019, recommends: "bike-batteries/ride-5" },
-          { value: "unicorn", label: "Unicorn", yearFrom: 2020, recommends: "bike-batteries/ride-9" },
-        ],
-      },
-      {
-        value: "bajaj",
-        label: "Bajaj",
-        models: [
-          { value: "pulsar-125", label: "Pulsar 125", yearFrom: 2019, recommends: "bike-batteries/ride-5" },
-          { value: "pulsar-n160", label: "Pulsar N160", yearFrom: 2022, recommends: "bike-batteries/ride-9" },
-          { value: "dominar-400", label: "Dominar 400", yearFrom: 2019, recommends: "bike-batteries/ride-9" },
-        ],
-      },
-      {
-        value: "tvs",
-        label: "TVS",
-        models: [
-          { value: "jupiter", label: "Jupiter", yearFrom: 2019, recommends: "bike-batteries/ride-5" },
-          { value: "ntorq-125", label: "NTorq 125", yearFrom: 2018, recommends: "bike-batteries/ride-5" },
-          { value: "raider-125", label: "Raider 125", yearFrom: 2021, recommends: "bike-batteries/ride-5" },
-          { value: "apache-rtr-160", label: "Apache RTR 160", yearFrom: 2018, recommends: "bike-batteries/ride-9" },
-        ],
-      },
-      {
-        value: "royal-enfield",
-        label: "Royal Enfield",
-        models: [
-          { value: "classic-350", label: "Classic 350", yearFrom: 2021, recommends: "bike-batteries/ride-9" },
-          { value: "hunter-350", label: "Hunter 350", yearFrom: 2022, recommends: "bike-batteries/ride-9" },
-          { value: "himalayan", label: "Himalayan", yearFrom: 2021, recommends: "bike-batteries/ride-14" },
-          { value: "interceptor-650", label: "Interceptor 650", yearFrom: 2019, recommends: "bike-batteries/ride-14" },
-        ],
-      },
-      {
-        value: "yamaha",
-        label: "Yamaha",
-        models: [
-          { value: "fz-s-fi", label: "FZ-S FI", yearFrom: 2019, recommends: "bike-batteries/ride-9" },
-          { value: "mt-15", label: "MT-15", yearFrom: 2019, recommends: "bike-batteries/ride-9" },
-          { value: "r15-v4", label: "R15 V4", yearFrom: 2021, recommends: "bike-batteries/ride-9" },
+        id: "business-bill",
+        label: "Monthly Electricity Bill",
+        placeholder: "Select your usual bill",
+        options: [
+          {
+            value: "under-10k",
+            label: "Under ₹10,000",
+            recommends: ["solar-inverters/flow-5kw-hybrid"],
+            note: "Usage at this level usually suits a system of roughly 5 kW.",
+          },
+          {
+            value: "10k-25k",
+            label: "₹10,000 - ₹25,000",
+            recommends: ["solar-inverters/flow-10kw-ongrid"],
+            note: "Usage at this level usually suits a system of roughly 10 kW.",
+          },
+          {
+            value: "over-25k",
+            label: "Over ₹25,000",
+            recommends: ["solar-inverters/flow-10kw-ongrid"],
+            note: "Above this level a system is usually built from several inverters. We will size it properly against your load profile.",
+          },
         ],
       },
     ],
   },
 
+  /* ---------------------------- WATER HEATING --------------------------- */
   {
-    id: "commercial",
-    label: "Commercial",
-    helper: "Vans, trucks and buses",
-    fieldLabels: {
-      first: "Vehicle Brand",
-      second: "Vehicle Model",
-      third: "Year",
-    },
-    groups: [
+    id: "water-heating",
+    label: "Water Heating",
+    helper: "Solar hot water for your home",
+    steps: [
       {
-        value: "tata-motors",
-        label: "Tata Motors",
-        models: [
-          { value: "ace", label: "Ace", yearFrom: 2018, recommends: "commercial-batteries/haul-88" },
-          { value: "intra-v30", label: "Intra V30", yearFrom: 2019, recommends: "commercial-batteries/haul-88" },
-          { value: "lpt-1109", label: "LPT 1109", yearFrom: 2018, recommends: "commercial-batteries/haul-130" },
-          { value: "signa-2823", label: "Signa 2823", yearFrom: 2019, recommends: "commercial-batteries/haul-150" },
+        id: "household-size",
+        label: "People in the Household",
+        placeholder: "Select household size",
+        options: [
+          {
+            value: "2-3",
+            label: "2 - 3 people",
+            recommends: ["solar-water-heaters/warm-100-etc"],
+          },
+          {
+            value: "4-6",
+            label: "4 - 6 people",
+            recommends: ["solar-water-heaters/warm-200-etc"],
+          },
+          {
+            value: "7-plus",
+            label: "7 or more people",
+            recommends: ["solar-water-heaters/warm-300-fpc"],
+          },
+          {
+            value: "commercial",
+            label: "Guest house or commercial use",
+            recommends: ["solar-water-heaters/warm-300-fpc"],
+          },
         ],
       },
       {
-        value: "ashok-leyland",
-        label: "Ashok Leyland",
-        models: [
-          { value: "dost", label: "Dost", yearFrom: 2018, recommends: "commercial-batteries/haul-88" },
-          { value: "partner", label: "Partner", yearFrom: 2018, recommends: "commercial-batteries/haul-88" },
-          { value: "boss-1115", label: "Boss 1115", yearFrom: 2018, recommends: "commercial-batteries/haul-130" },
-          { value: "haulage-3520", label: "3520 Haulage", yearFrom: 2019, recommends: "commercial-batteries/haul-150" },
-        ],
-      },
-      {
-        value: "mahindra-commercial",
-        label: "Mahindra",
-        models: [
-          { value: "jeeto", label: "Jeeto", yearFrom: 2018, recommends: "commercial-batteries/haul-88" },
-          { value: "bolero-pickup", label: "Bolero Pickup", yearFrom: 2018, recommends: "commercial-batteries/haul-88" },
-          { value: "furio-7", label: "Furio 7", yearFrom: 2019, recommends: "commercial-batteries/haul-130" },
-        ],
-      },
-      {
-        value: "eicher",
-        label: "Eicher",
-        models: [
-          { value: "pro-2049", label: "Pro 2049", yearFrom: 2018, recommends: "commercial-batteries/haul-88" },
-          { value: "pro-2110", label: "Pro 2110", yearFrom: 2018, recommends: "commercial-batteries/haul-130" },
-          { value: "pro-6019", label: "Pro 6019", yearFrom: 2019, recommends: "commercial-batteries/haul-150" },
+        id: "water-type",
+        label: "Your Water Supply",
+        placeholder: "Select water type",
+        options: [
+          {
+            value: "normal",
+            label: "Normal water",
+            recommends: [],
+          },
+          {
+            value: "hard",
+            label: "Hard water",
+            /* Overrides the heater chosen above: flat plate collectors cope
+               with scaling far better than evacuated tubes. */
+            recommends: ["solar-water-heaters/warm-300-fpc"],
+            note: "Hard water scales up evacuated tubes quickly, so a flat plate system is usually the better long-term choice.",
+          },
+          {
+            value: "pressurised",
+            label: "Pressurised plumbing",
+            recommends: ["solar-water-heaters/warm-300-fpc"],
+            note: "Pressurised plumbing needs a pressure-rated system rather than a gravity-fed one.",
+          },
         ],
       },
     ],
   },
 
+  /* --------------------------- OUTDOOR LIGHTING ------------------------- */
   {
-    id: "home-backup",
-    label: "Home Backup",
-    helper: "Inverter batteries for home and office",
-    fieldLabels: {
-      first: "Home Size",
-      second: "What You Want to Power",
-      /* A model year is not a meaningful question for backup power. */
-      third: null,
-    },
-    groups: [
+    id: "outdoor-lighting",
+    label: "Outdoor Lighting",
+    helper: "Solar street and area lights",
+    steps: [
       {
-        value: "studio-1bhk",
-        label: "Studio or 1 BHK",
-        models: [
-          { value: "essentials", label: "Lights and fans", yearFrom: 0, recommends: "inverter-batteries/home-100" },
-          { value: "essentials-tv", label: "Lights, fans and TV", yearFrom: 0, recommends: "inverter-batteries/home-100" },
+        id: "lighting-area",
+        label: "Where You Need Light",
+        placeholder: "Select the location",
+        options: [
+          {
+            value: "pathway",
+            label: "Pathway, driveway or compound",
+            recommends: ["solar-street-lights/beam-20"],
+          },
+          {
+            value: "internal-road",
+            label: "Internal road or parking area",
+            recommends: ["solar-street-lights/beam-40"],
+          },
+          {
+            value: "campus",
+            label: "Campus, factory or layout",
+            recommends: ["solar-street-lights/beam-40"],
+          },
+          {
+            value: "main-road",
+            label: "Main road or highway lane",
+            recommends: ["solar-street-lights/beam-60-split"],
+          },
         ],
       },
       {
-        value: "2bhk",
-        label: "2 BHK",
-        models: [
-          { value: "essentials-tv", label: "Lights, fans and TV", yearFrom: 0, recommends: "inverter-batteries/home-100" },
-          { value: "with-fridge", label: "Adding a refrigerator", yearFrom: 0, recommends: "inverter-batteries/home-150" },
-        ],
-      },
-      {
-        value: "3bhk",
-        label: "3 BHK",
-        models: [
-          { value: "essentials-tv", label: "Lights, fans and TV", yearFrom: 0, recommends: "inverter-batteries/home-150" },
-          { value: "with-fridge", label: "Adding a refrigerator", yearFrom: 0, recommends: "inverter-batteries/home-150" },
-          { value: "extended", label: "Extended backup time", yearFrom: 0, recommends: "inverter-batteries/home-220" },
-        ],
-      },
-      {
-        value: "large-home-office",
-        label: "Large home or small office",
-        models: [
-          { value: "household", label: "Household essentials", yearFrom: 0, recommends: "inverter-batteries/home-220" },
-          { value: "office", label: "Office equipment", yearFrom: 0, recommends: "inverter-batteries/home-220" },
+        id: "lighting-shade",
+        label: "Sunlight at the Pole Position",
+        placeholder: "Select the conditions",
+        options: [
+          {
+            value: "clear",
+            label: "Clear sky above the pole",
+            recommends: [],
+          },
+          {
+            value: "shaded",
+            label: "Shaded by trees or buildings",
+            /* Overrides with a split unit so the panel can be sited apart. */
+            recommends: ["solar-street-lights/beam-60-split"],
+            note: "Where the pole itself is shaded, a split system lets the panel be mounted separately in clear sun.",
+          },
         ],
       },
     ],
@@ -299,17 +348,7 @@ export const getFinderCategory = (
 ): FinderCategoryConfig | undefined =>
   finderCategories.find((category) => category.id === id);
 
-/** Descending year options, newest first. */
-export function yearsFor(yearFrom: number): string[] {
-  if (yearFrom <= 0) return [];
-  const years: string[] = [];
-  for (let year = CATALOGUE_YEAR; year >= yearFrom; year -= 1) {
-    years.push(String(year));
-  }
-  return years;
-}
-
-/** Splits a `recommends` value into its category and product slugs. */
+/** Splits a `recommends` entry into its category and product slugs. */
 export function parseRecommendation(recommends: string): {
   categorySlug: string;
   productSlug: string;
@@ -317,3 +356,28 @@ export function parseRecommendation(recommends: string): {
   const [categorySlug, productSlug] = recommends.split("/");
   return { categorySlug, productSlug };
 }
+
+/**
+ * Resolves the selected options into a product shortlist.
+ *
+ * Rule: a later step overrides an earlier one **within the same product
+ * category**, and adds to it across categories. That is what lets "I want
+ * backup" swap an on-grid inverter for a hybrid one without the visitor ever
+ * seeing two contradictory inverters in the result.
+ */
+export function resolveRecommendations(selected: FinderOption[]): string[] {
+  const byCategory = new Map<string, string>();
+
+  for (const option of selected) {
+    for (const entry of option.recommends) {
+      const { categorySlug } = parseRecommendation(entry);
+      byCategory.set(categorySlug, entry);
+    }
+  }
+
+  return [...byCategory.values()];
+}
+
+/** Guidance notes attached to the selected options, in step order. */
+export const collectNotes = (selected: FinderOption[]): string[] =>
+  selected.map((option) => option.note).filter((note): note is string => Boolean(note));

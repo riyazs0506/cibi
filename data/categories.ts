@@ -1,101 +1,121 @@
 /* =============================================================================
  * PRODUCT CATEGORIES
- * Presentation-free data. Swap in the client's real range without touching UI.
+ * =============================================================================
+ *
+ *  The five areas the catalogue is organised into. Order here is the order
+ *  they appear everywhere on the site: the home grid, the products index, the
+ *  category navigation and the footer.
  * ========================================================================== */
 
 export interface Category {
   /** URL segment: /products/[slug] */
   slug: string;
+  /** Full display name, used in headings and navigation. */
   name: string;
-  /** One-line card description. */
-  tagline: string;
-  /** Longer intro used on the category page and in meta descriptions. */
-  intro: string;
-  /** Short label for filters and breadcrumbs. */
+  /** Shorter label for tight spaces, e.g. "Back to Panels". */
   shortName: string;
+  /** One-line card description on the home and products grids. */
+  tagline: string;
+  /** Longer lead paragraph for the category page hero and its meta description. */
+  intro: string;
+  /** What makes this range suitable - shown as a checked list. */
+  highlights: string[];
   image: string;
   imageAlt: string;
-  /** Bullet points shown on the category page. */
-  highlights: string[];
 }
 
 export const categories: Category[] = [
   {
-    slug: "car-batteries",
-    name: "Car Batteries",
-    shortName: "Car",
-    tagline: "Reliable power for everyday drives.",
+    slug: "solar-panels",
+    name: "Solar Panels",
+    shortName: "Panels",
+    tagline: "Quiet, dependable generation on your roof.",
     intro:
-      "Batteries suited to hatchbacks, sedans and SUVs, chosen to start dependably in daily traffic, short trips and long weekends alike.",
-    image: "/images/category-car-battery.svg",
-    imageAlt: "Maintenance-free car battery with navy casing and blue terminal caps",
+      "High-efficiency solar panels for homes, businesses and farms, chosen for steady output and a long working life on Indian rooftops.",
     highlights: [
-      "Maintenance-free and AGM options",
-      "Suited to hatchbacks, sedans and SUVs",
-      "Sizes matched to your vehicle's fitment",
+      "Monocrystalline and bifacial modules for strong output per square metre",
+      "Built to hold up to heat, humidity, dust and monsoon rain",
+      "Long performance warranties backed by the manufacturer",
+      "Sized and laid out to suit the roof you actually have",
     ],
+    image: "/images/category-solar-panels.svg",
+    imageAlt:
+      "A high-efficiency monocrystalline solar panel viewed at an angle",
   },
   {
-    slug: "bike-batteries",
-    name: "Bike Batteries",
-    shortName: "Bike",
-    tagline: "Compact power for every ride.",
+    slug: "solar-inverters",
+    name: "Solar Inverters",
+    shortName: "Inverters",
+    tagline: "The brain that turns sunlight into usable power.",
     intro:
-      "Small, sealed batteries for motorcycles and scooters, built to handle frequent starts and everyday commuting without fuss.",
-    image: "/images/category-bike-battery.svg",
-    imageAlt: "Compact sealed motorcycle battery with mint accent label",
+      "On-grid, off-grid and hybrid solar inverters that convert what your panels generate into clean power your home or business can use.",
     highlights: [
-      "Sealed, spill-resistant construction",
-      "Fits commuter bikes and scooters",
-      "Steady starting in daily use",
+      "On-grid, off-grid and hybrid options for every kind of connection",
+      "MPPT tracking to pull the most from your panels through the day",
+      "Clear monitoring so you can see what your system is producing",
+      "Protection built in for overload, surge and reverse polarity",
     ],
+    image: "/images/category-solar-inverters.svg",
+    imageAlt: "A wall-mounted hybrid solar inverter with a display panel",
   },
   {
-    slug: "commercial-batteries",
-    name: "Commercial Batteries",
-    shortName: "Commercial",
-    tagline: "Dependable power for vehicles that work harder.",
+    slug: "solar-batteries",
+    name: "Solar Batteries",
+    shortName: "Batteries",
+    tagline: "Keep the power you generate for when you need it.",
     intro:
-      "Higher-capacity batteries for light commercial vehicles, trucks and buses that spend long hours on the road and cannot afford downtime.",
-    image: "/images/category-commercial-battery.svg",
-    imageAlt: "High-capacity commercial vehicle battery with reinforced handles",
+      "Lithium and tubular storage batteries that hold the energy your panels produce, so an outage or a cloudy evening does not leave you without power.",
     highlights: [
-      "Built for long operating hours",
-      "Higher reserve capacity",
-      "Suited to fleets and transport use",
+      "Lithium and tall tubular options to suit different budgets",
+      "Deep-cycle construction made for daily charge and discharge",
+      "Sized to the backup hours you actually want",
+      "Works with both hybrid and off-grid inverter setups",
     ],
+    image: "/images/category-solar-batteries.svg",
+    imageAlt: "A lithium solar storage battery for home energy backup",
   },
   {
-    slug: "heavy-duty-batteries",
-    name: "Heavy-Duty Batteries",
-    shortName: "Heavy-Duty",
-    tagline: "Strong power for demanding applications.",
+    slug: "solar-water-heaters",
+    name: "Solar Water Heaters",
+    shortName: "Water Heaters",
+    tagline: "Hot water from sunlight, every morning.",
     intro:
-      "Rugged batteries for construction equipment, agricultural machinery and generator sets working in tough conditions.",
-    image: "/images/category-heavy-duty-battery.svg",
-    imageAlt: "Rugged heavy-duty tubular battery with thick terminal posts",
+      "Evacuated tube and flat plate solar water heaters that cut the largest single electrical load in most homes, quietly and with almost no upkeep.",
     highlights: [
-      "Tubular plates for deeper cycling",
-      "Vibration-resistant construction",
-      "For machinery and generator sets",
+      "Evacuated tube and flat plate systems for different climates",
+      "Insulated tanks that hold heat through the night",
+      "Very little maintenance beyond an occasional clean",
+      "Sized by household so you are not paying for capacity you never use",
     ],
+    image: "/images/category-solar-water-heaters.svg",
+    imageAlt:
+      "A rooftop evacuated tube solar water heater with an insulated storage tank",
   },
   {
-    slug: "inverter-batteries",
-    name: "Inverter Batteries",
-    shortName: "Inverter",
-    tagline: "Reliable backup power for your home.",
+    slug: "solar-street-lights",
+    name: "Solar Street Lights",
+    shortName: "Street Lights",
+    tagline: "Light where running a cable is not practical.",
     intro:
-      "Tall tubular batteries designed for home and small-office inverters, giving steady backup through routine power cuts.",
-    image: "/images/category-inverter-battery.svg",
-    imageAlt: "Tall tubular inverter battery for home backup power",
+      "All-in-one and split solar street lights for roads, campuses, farms and residential layouts - no trenching, no wiring and no electricity bill.",
     highlights: [
-      "Tall tubular design for long backup",
-      "Suited to homes and small offices",
-      "Steady performance through daily cuts",
+      "Integrated panel, battery and LED in a single sealed housing",
+      "Dusk-to-dawn operation with motion sensing on selected models",
+      "Weather-sealed to IP65 and above for year-round outdoor use",
+      "No cabling or grid connection required",
     ],
+    image: "/images/category-solar-street-lights.svg",
+    imageAlt:
+      "An all-in-one solar street light with an integrated panel and LED head",
   },
 ];
 
+/* -------------------------------------------------------------------------- */
+/* Selectors                                                                  */
+/* -------------------------------------------------------------------------- */
+
 export const getCategory = (slug: string): Category | undefined =>
   categories.find((category) => category.slug === slug);
+
+export const categorySlugs = (): string[] =>
+  categories.map((category) => category.slug);

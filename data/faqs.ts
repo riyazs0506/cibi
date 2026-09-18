@@ -1,8 +1,10 @@
 /* =============================================================================
  * FAQs
  * Answers common informational questions and backs the FAQPage structured data.
- * Keep answers factual and general - nothing here should promise a specific
- * outcome, price or timeline on the client's behalf.
+ *
+ * Keep answers factual and general. Nothing here promises a payback period, a
+ * subsidy amount, a generation figure or a saving - all of those depend on
+ * location, roof, tariff and usage, and stating them as fact would be wrong.
  * ========================================================================== */
 
 export interface Faq {
@@ -12,43 +14,43 @@ export interface Faq {
 
 export const faqs: Faq[] = [
   {
-    question: "How do I choose the right car battery?",
+    question: "How much roof space do I need for solar?",
     answer:
-      "Three things matter most: the physical size that fits your battery tray, the terminal layout so the cables reach correctly, and enough capacity and cranking current for your engine. Your vehicle handbook lists the specification it was built around. If you would rather not work through it alone, tell us your vehicle and we will help you match it.",
+      "As a working rule, each kilowatt of panels needs roughly 60 to 80 square feet of clear, shade-free roof. A 3 kW system therefore wants somewhere around 200 to 250 square feet. What matters as much as the area is the shape of it and whether anything shades it during the middle of the day.",
   },
   {
-    question: "How long does a car battery usually last?",
+    question: "What size solar system does my home need?",
     answer:
-      "Most car batteries give somewhere between three and five years of service, though this varies a great deal with climate, driving pattern and how the vehicle is used. Frequent short trips, long periods parked, and sustained high temperatures all shorten that span.",
+      "Start from your electricity bill rather than your roof. Look at the units consumed per month, divide by 30 for a daily average, and size the system to cover that. Your tariff, whether you have net metering, and how much of your usage happens during daylight all shift the answer, which is why we prefer to look at an actual bill with you.",
   },
   {
-    question: "When should I replace my battery?",
+    question: "What is the difference between on-grid, off-grid and hybrid?",
     answer:
-      "Common signs are slow or laboured cranking, headlights that dim noticeably at idle, needing a jump start more than once, or a battery warning light on the dashboard. If your battery is already past three years old and showing any of these, it is worth having it inspected before it leaves you stranded.",
+      "An on-grid system feeds your home and exports the surplus to the grid, but shuts down during a power cut for the safety of line workers. An off-grid system runs entirely on panels and batteries with no grid connection at all. A hybrid system does both: it uses the grid normally and switches to battery when the supply fails.",
   },
   {
-    question: "How can I make my battery last longer?",
+    question: "Will solar work during a power cut?",
     answer:
-      "Keep the terminals clean and free of corrosion, make sure the battery is clamped down firmly so it does not vibrate, and try to take a longer drive occasionally rather than only short trips. If the vehicle will stand unused for several weeks, a maintenance charger helps. For serviceable batteries, check electrolyte levels at the recommended interval.",
+      "Only if your system is built for it. A standard on-grid system stops when the grid stops. If you want power during an outage you need a hybrid inverter and a battery, and the loads you want backed up are decided when the system is installed.",
   },
   {
-    question: "What is the difference between a maintenance-free and an AGM battery?",
+    question: "How long do solar panels last?",
     answer:
-      "A maintenance-free battery is a sealed flooded battery that needs no topping up. An AGM battery holds its electrolyte in a glass mat instead of as free liquid, which suits vehicles with start-stop systems and frequent partial charging. If your vehicle was supplied with an AGM battery, it should be replaced with an AGM battery.",
+      "Panels are generally warranted to still produce around 85% of their original output after 25 years, and most keep working beyond that. Inverters have a shorter life and are usually the first component to be replaced, typically somewhere between 8 and 15 years depending on the unit and how hard it works.",
   },
   {
-    question: "What does the battery warranty cover?",
+    question: "Do solar panels need cleaning and maintenance?",
     answer:
-      "Warranties cover manufacturing defects for the stated period, and the exact terms differ by product and between private and commercial use. Keep your purchase invoice, as it is needed for any assessment. If you think you have a warranty issue, get in touch and we will guide you through what happens next.",
+      "Panels themselves have no moving parts, but dust, bird droppings and pollen do reduce output, and in dusty conditions the drop can be significant. A rinse every few weeks through the dry season and a proper clean two to four times a year is usually enough. We also recommend an annual check of the mounting, cabling and earthing.",
   },
   {
-    question: "Which inverter battery size do I need for my home?",
+    question: "Is a solar water heater better than a solar power system?",
     answer:
-      "It depends on what you want to keep running and for how long. Lights, fans and a router need far less than a household that also wants a refrigerator on backup. Tell us which appliances matter to you and roughly how long your power cuts last, and we can point you to a suitable capacity.",
+      "They solve different problems, and a water heater is often the cheaper first step. Water heating is usually the single biggest electrical load in a home, so a solar water heater removes a large, predictable cost for a much smaller outlay than a full rooftop system. Many households end up with both.",
   },
   {
-    question: "Can you help if I am not sure what is wrong?",
+    question: "Can I add more panels or a battery later?",
     answer:
-      "Yes. A starting problem is not always the battery - it can also be the alternator, the wiring or a parasitic drain. A battery inspection helps identify what your vehicle actually needs before you spend anything on a replacement.",
+      "Often yes, but it depends on what was installed first. The inverter sets the ceiling, so if expansion is likely we would usually suggest sizing it with headroom from the start. Hybrid inverters are generally battery-ready even if you do not buy the battery on day one. Tell us your plans and we will design for them.",
   },
 ];
