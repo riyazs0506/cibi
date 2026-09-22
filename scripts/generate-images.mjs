@@ -26,20 +26,20 @@ mkdirSync(outDir, { recursive: true });
 /* -------------------------------------------------------------------------- */
 
 const C = {
-  canvas: "#f8fafc",
+  canvas: "#fcfcf9",
   surface: "#ffffff",
-  navy: "#102a43",
-  navySoft: "#1c3d5a",
+  navy: "#122d3b",
+  navySoft: "#234553",
   navyDeep: "#0a1e30",
   navyTop: "#27547a",
-  slate: "#486581",
-  muted: "#829ab1",
-  line: "#e6eef5",
-  accent: "#5b9dff",
-  accentDeep: "#3d82ea",
+  slate: "#53636a",
+  muted: "#66767c",
+  line: "#dfe5e3",
+  accent: "#f4cf4c",
+  accentDeep: "#756016",
   accentPale: "#8dbcff",
   mint: "#65c9a5",
-  tintBlue: "#eef5ff",
+  tintBlue: "#f7f3e4",
 };
 
 const WIDTH = 640;
@@ -554,10 +554,10 @@ writeFileSync(
   join(outDir, "cibi-solar-logo.svg"),
   `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="Cibi Solar logo">
   <title>Cibi Solar logo</title>
-  <rect width="512" height="512" rx="150" fill="${C.navy}"/>
-  <circle cx="256" cy="172" r="59" fill="${C.accent}"/>
-  <path d="M114 382 L156 271h200l42 111z" fill="none" stroke="#ffffff" stroke-width="27" stroke-linejoin="round"/>
-  <path d="M138 326h236M256 271v111" stroke="#ffffff" stroke-width="22" stroke-linecap="round"/>
+  <rect width="512" height="512" rx="75" fill="${C.accent}"/>
+  <circle cx="256" cy="172" r="59" fill="${C.navy}"/>
+  <path d="M114 382 L156 271h200l42 111z" fill="none" stroke="${C.navy}" stroke-width="27" stroke-linejoin="round"/>
+  <path d="M138 326h236M256 271v111" stroke="${C.navy}" stroke-width="22" stroke-linecap="round"/>
 </svg>
 `,
   "utf8",

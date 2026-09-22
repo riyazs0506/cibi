@@ -4,8 +4,8 @@
   "description": "Solar panels, inverters, batteries, water heaters and street lights, with honest guidance and dependable support.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#f8fafc",
-  "theme_color": "#f8fafc",
+  "background_color": "#fcfcf9",
+  "theme_color": "#122d3b",
   "icons": [
     {
       "src": "/icon-192.png",

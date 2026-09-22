@@ -3,12 +3,12 @@
   <defs>
     <linearGradient id="glassFace" x1="0" y1="0" x2="0.35" y2="1">
       <stop offset="0%" stop-color="#2d5f8a"/>
-      <stop offset="55%" stop-color="#1c3d5a"/>
-      <stop offset="100%" stop-color="#102a43"/>
+      <stop offset="55%" stop-color="#234553"/>
+      <stop offset="100%" stop-color="#122d3b"/>
     </linearGradient>
     <linearGradient id="caseFront" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#1c3d5a"/>
-      <stop offset="100%" stop-color="#102a43"/>
+      <stop offset="0%" stop-color="#234553"/>
+      <stop offset="100%" stop-color="#122d3b"/>
     </linearGradient>
     <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#e9f1f8"/>
@@ -20,20 +20,20 @@
       <stop offset="100%" stop-color="#65c9a5" stop-opacity="0"/>
     </radialGradient>
   </defs>
-  <rect width="640" height="420" fill="#f8fafc"/>
+  <rect width="640" height="420" fill="#fcfcf9"/>
   <circle cx="320" cy="210" r="248" fill="url(#glow)"/>
-  <ellipse cx="320" cy="350" rx="150" ry="15" fill="#102a43" opacity="0.08"/>
+  <ellipse cx="320" cy="350" rx="150" ry="15" fill="#122d3b" opacity="0.08"/>
   <line x1="121" y1="84" x2="129" y2="84" stroke="#65c9a5" stroke-width="3" stroke-linecap="round" opacity="0.5"/><line x1="113.7" y1="101.7" x2="119.3" y2="107.3" stroke="#65c9a5" stroke-width="3" stroke-linecap="round" opacity="0.5"/><line x1="96" y1="109" x2="96" y2="117" stroke="#65c9a5" stroke-width="3" stroke-linecap="round" opacity="0.5"/><line x1="78.3" y1="101.7" x2="72.7" y2="107.3" stroke="#65c9a5" stroke-width="3" stroke-linecap="round" opacity="0.5"/><line x1="71" y1="84" x2="63" y2="84" stroke="#65c9a5" stroke-width="3" stroke-linecap="round" opacity="0.5"/><line x1="78.3" y1="66.3" x2="72.7" y2="60.7" stroke="#65c9a5" stroke-width="3" stroke-linecap="round" opacity="0.5"/><line x1="96" y1="59" x2="96" y2="51" stroke="#65c9a5" stroke-width="3" stroke-linecap="round" opacity="0.5"/><line x1="113.7" y1="66.3" x2="119.3" y2="60.7" stroke="#65c9a5" stroke-width="3" stroke-linecap="round" opacity="0.5"/><circle cx="96" cy="84" r="18" fill="#65c9a5" opacity="0.85"/>
   <path d="M398 92 L520 76 L534 128 L412 144 Z" fill="url(#metal)"/>
        <path d="M406 99 L514 85 L526 123 L418 137 Z" fill="url(#glassFace)"/>
        <path d="M412 118 L522 104 M462 92 L470 130" stroke="#0a1e30" stroke-width="1.6" opacity="0.5"/>
-       <path d="M466 140 L466 250" stroke="#829ab1" stroke-width="8" stroke-linecap="round"/>
-       <path d="M466 250 l0 78" stroke="#486581" stroke-width="9" stroke-linecap="round"/>
-       <ellipse cx="466" cy="336" rx="26" ry="8" fill="#102a43" opacity="0.1"/>
+       <path d="M466 140 L466 250" stroke="#66767c" stroke-width="8" stroke-linecap="round"/>
+       <path d="M466 250 l0 78" stroke="#53636a" stroke-width="9" stroke-linecap="round"/>
+       <ellipse cx="466" cy="336" rx="26" ry="8" fill="#122d3b" opacity="0.1"/>
 
   <!-- pole -->
-  <path d="M320 176 L320 330" stroke="#486581" stroke-width="11" stroke-linecap="round"/>
-  <rect x="292" y="326" width="56" height="16" rx="6" fill="#102a43" opacity="0.18"/>
+  <path d="M320 176 L320 330" stroke="#53636a" stroke-width="11" stroke-linecap="round"/>
+  <rect x="292" y="326" width="56" height="16" rx="6" fill="#122d3b" opacity="0.18"/>
 
   <!-- luminaire -->
   <path d="M270 150 L370 150 L358 176 L282 176 Z" fill="url(#caseFront)"/>
@@ -43,8 +43,8 @@
   <path d="M286 182 L354 182 L412 330 L228 330 Z" fill="#65c9a5" opacity="0.1"/>
 
   <!-- label plate on the pole base -->
-  <rect x="230" y="248" width="180" height="48" rx="10" fill="#f8fafc" opacity="0.97"/>
+  <rect x="230" y="248" width="180" height="48" rx="10" fill="#fcfcf9" opacity="0.97"/>
   <rect x="230" y="248" width="180" height="4" rx="2" fill="#65c9a5"/>
-  <text x="320" y="271" text-anchor="middle" font-family="system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-size="17" font-weight="700" fill="#102a43">BEAM 60</text>
-  <text x="320" y="288" text-anchor="middle" font-family="system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-size="12" font-weight="500" fill="#486581">60 W / Split</text>
+  <text x="320" y="271" text-anchor="middle" font-family="system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-size="17" font-weight="700" fill="#122d3b">BEAM 60</text>
+  <text x="320" y="288" text-anchor="middle" font-family="system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-size="12" font-weight="500" fill="#53636a">60 W / Split</text>
 </svg>

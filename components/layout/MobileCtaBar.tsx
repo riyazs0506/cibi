@@ -58,7 +58,7 @@ export function MobileCtaBar() {
               "flex h-full w-full flex-col items-center justify-center gap-1 rounded-xl px-2 py-2",
               "transition-colors duration-[var(--duration-soft)]",
               action.emphasis
-                ? "bg-navy text-white"
+                ? "bg-accent text-navy"
                 : "text-slate hover:bg-tint-blue hover:text-accent-deep",
             ].join(" ");
 

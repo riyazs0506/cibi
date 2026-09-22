@@ -3,32 +3,32 @@
   <defs>
     <linearGradient id="glassFace" x1="0" y1="0" x2="0.35" y2="1">
       <stop offset="0%" stop-color="#2d5f8a"/>
-      <stop offset="55%" stop-color="#1c3d5a"/>
-      <stop offset="100%" stop-color="#102a43"/>
+      <stop offset="55%" stop-color="#234553"/>
+      <stop offset="100%" stop-color="#122d3b"/>
     </linearGradient>
     <linearGradient id="caseFront" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#1c3d5a"/>
-      <stop offset="100%" stop-color="#102a43"/>
+      <stop offset="0%" stop-color="#234553"/>
+      <stop offset="100%" stop-color="#122d3b"/>
     </linearGradient>
     <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#e9f1f8"/>
       <stop offset="100%" stop-color="#c3d3e2"/>
     </linearGradient>
     <radialGradient id="glow">
-      <stop offset="0%" stop-color="#5b9dff" stop-opacity="0.16"/>
-      <stop offset="70%" stop-color="#5b9dff" stop-opacity="0.04"/>
-      <stop offset="100%" stop-color="#5b9dff" stop-opacity="0"/>
+      <stop offset="0%" stop-color="#f4cf4c" stop-opacity="0.16"/>
+      <stop offset="70%" stop-color="#f4cf4c" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#f4cf4c" stop-opacity="0"/>
     </radialGradient>
   </defs>
-  <rect width="640" height="420" fill="#f8fafc"/>
+  <rect width="640" height="420" fill="#fcfcf9"/>
   <circle cx="320" cy="210" r="248" fill="url(#glow)"/>
-  <ellipse cx="320" cy="348" rx="210" ry="15" fill="#102a43" opacity="0.08"/>
-  <line x1="551" y1="84" x2="559" y2="84" stroke="#5b9dff" stroke-width="3" stroke-linecap="round" opacity="0.5"/><line x1="543.1" y1="103.1" x2="548.7" y2="108.7" stroke="#5b9dff" stroke-width="3" stroke-linecap="round" opacity="0.5"/><line x1="524" y1="111" x2="524" y2="119" stroke="#5b9dff" stroke-width="3" stroke-linecap="round" opacity="0.5"/><line x1="504.9" y1="103.1" x2="499.3" y2="108.7" stroke="#5b9dff" stroke-width="3" stroke-linecap="round" opacity="0.5"/><line x1="497" y1="84" x2="489" y2="84" stroke="#5b9dff" stroke-width="3" stroke-linecap="round" opacity="0.5"/><line x1="504.9" y1="64.9" x2="499.3" y2="59.3" stroke="#5b9dff" stroke-width="3" stroke-linecap="round" opacity="0.5"/><line x1="524" y1="57" x2="524" y2="49" stroke="#5b9dff" stroke-width="3" stroke-linecap="round" opacity="0.5"/><line x1="543.1" y1="64.9" x2="548.7" y2="59.3" stroke="#5b9dff" stroke-width="3" stroke-linecap="round" opacity="0.5"/><circle cx="524" cy="84" r="20" fill="#5b9dff" opacity="0.85"/>
+  <ellipse cx="320" cy="348" rx="210" ry="15" fill="#122d3b" opacity="0.08"/>
+  <line x1="551" y1="84" x2="559" y2="84" stroke="#f4cf4c" stroke-width="3" stroke-linecap="round" opacity="0.5"/><line x1="543.1" y1="103.1" x2="548.7" y2="108.7" stroke="#f4cf4c" stroke-width="3" stroke-linecap="round" opacity="0.5"/><line x1="524" y1="111" x2="524" y2="119" stroke="#f4cf4c" stroke-width="3" stroke-linecap="round" opacity="0.5"/><line x1="504.9" y1="103.1" x2="499.3" y2="108.7" stroke="#f4cf4c" stroke-width="3" stroke-linecap="round" opacity="0.5"/><line x1="497" y1="84" x2="489" y2="84" stroke="#f4cf4c" stroke-width="3" stroke-linecap="round" opacity="0.5"/><line x1="504.9" y1="64.9" x2="499.3" y2="59.3" stroke="#f4cf4c" stroke-width="3" stroke-linecap="round" opacity="0.5"/><line x1="524" y1="57" x2="524" y2="49" stroke="#f4cf4c" stroke-width="3" stroke-linecap="round" opacity="0.5"/><line x1="543.1" y1="64.9" x2="548.7" y2="59.3" stroke="#f4cf4c" stroke-width="3" stroke-linecap="round" opacity="0.5"/><circle cx="524" cy="84" r="20" fill="#f4cf4c" opacity="0.85"/>
   
-  <path d="M132 300 l0 30" stroke="#829ab1" stroke-width="7" stroke-linecap="round"/>
-  <path d="M438 300 l0 30" stroke="#829ab1" stroke-width="7" stroke-linecap="round"/>
-  <path d="M220.4 158 l0 74" stroke="#829ab1" stroke-width="6" stroke-linecap="round" opacity="0.75"/>
-  <path d="M489.6 158 l0 74" stroke="#829ab1" stroke-width="6" stroke-linecap="round" opacity="0.75"/>
+  <path d="M132 300 l0 30" stroke="#66767c" stroke-width="7" stroke-linecap="round"/>
+  <path d="M438 300 l0 30" stroke="#66767c" stroke-width="7" stroke-linecap="round"/>
+  <path d="M220.4 158 l0 74" stroke="#66767c" stroke-width="6" stroke-linecap="round" opacity="0.75"/>
+  <path d="M489.6 158 l0 74" stroke="#66767c" stroke-width="6" stroke-linecap="round" opacity="0.75"/>
   
 
   <!-- frame -->
@@ -41,7 +41,7 @@
 
   <!-- label plate on the frame edge -->
   <rect x="236" y="316" width="168" height="44" rx="10" fill="#ffffff" opacity="0.97"/>
-  <rect x="236" y="316" width="168" height="4" rx="2" fill="#5b9dff"/>
-  <text x="320" y="337" text-anchor="middle" font-family="system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-size="17" font-weight="700" fill="#102a43">RAY 400</text>
-  <text x="320" y="353" text-anchor="middle" font-family="system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-size="12" font-weight="500" fill="#486581">400 W / Mono</text>
+  <rect x="236" y="316" width="168" height="4" rx="2" fill="#f4cf4c"/>
+  <text x="320" y="337" text-anchor="middle" font-family="system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-size="17" font-weight="700" fill="#122d3b">RAY 400</text>
+  <text x="320" y="353" text-anchor="middle" font-family="system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif" font-size="12" font-weight="500" fill="#53636a">400 W / Mono</text>
 </svg>

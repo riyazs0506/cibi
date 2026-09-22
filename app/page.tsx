@@ -1,297 +1,127 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { brand } from "@/data/site";
-import { getFeaturedProducts } from "@/data/products";
-import { services } from "@/data/services";
+import { categories } from "@/data/categories";
 import { buildMetadata } from "@/lib/seo";
 import { Button } from "@/components/ui/Button";
 import { Icon, type IconName } from "@/components/ui/Icon";
 import { Reveal } from "@/components/ui/Reveal";
-import { SectionHeading } from "@/components/ui/SectionHeading";
-import { ProductCard } from "@/components/cards/ProductCard";
-import { ServiceCard } from "@/components/cards/ServiceCard";
 import { SolarFinder } from "@/components/SolarFinder";
-import { CategoryGrid } from "@/components/sections/CategoryGrid";
 import { CtaBand } from "@/components/sections/CtaBand";
 
 export const metadata: Metadata = buildMetadata({
   isHome: true,
   title: `${brand.name} | Solar Panels, Inverters & Water Heaters`,
-  description:
-    "Rooftop solar for homes and businesses - panels, inverters, batteries, water heaters and street lights, with honest sizing advice, careful installation and dependable after-sales support.",
+  description: "A brighter everyday starts with solar. Explore solar panels, inverters, batteries, water heating and lighting, with careful installation and dependable support.",
   path: "/",
 });
 
-const heroTrust = [
-  "Quality Equipment",
-  "Honest Sizing",
-  "Warranty Support",
+const solutions: { icon: IconName; title: string; description: string; href: string }[] = [
+  { icon: "home", title: "For your home", description: "Put your roof to work. Make room for cleaner energy and a more independent everyday.", href: "/contact?enquiry=residential-solar#enquiry-form" },
+  { icon: "business", title: "For your business", description: "Energy that works as hard as you do. Solar designed around your space and operations.", href: "/contact?enquiry=commercial-solar#enquiry-form" },
+  { icon: "sun", title: "For everyday living", description: "From a warm morning shower to well-lit outdoor spaces. Let sunlight do more.", href: "/products/solar-water-heaters" },
 ];
 
-const benefits: { icon: IconName; title: string; description: string }[] = [
-  {
-    icon: "shield",
-    title: "Equipment That Lasts",
-    description:
-      "Panels and inverters chosen to still be working properly in twenty years, not just on day one.",
-  },
-  {
-    icon: "compass",
-    title: "Sized Honestly",
-    description:
-      "A system built around the power you actually use. If solar is a poor fit for your roof, we will say so.",
-  },
-  {
-    icon: "support",
-    title: "Clear Answers",
-    description:
-      "Plain explanations of what solar will and will not do, with no jargon and no pressure.",
-  },
-  {
-    icon: "badge",
-    title: "Looked After",
-    description:
-      "Cleaning, checks and warranty claims handled for you long after the installation is done.",
-  },
+const process = [
+  { title: "Let’s understand your needs", text: "We start with your electricity use, your space and what you want solar to do." },
+  { title: "A system that fits", text: "A site assessment helps us recommend the right equipment, layout and capacity." },
+  { title: "Installed with care", text: "From mounting to commissioning, every part comes together with attention to detail." },
+  { title: "Support for the long run", text: "Maintenance, system checks and warranty guidance keep you moving forward." },
 ];
 
 export default function HomePage() {
-  const featured = getFeaturedProducts().slice(0, 6);
-
   return (
     <>
-      {/* ================================ HERO =============================== */}
-      <section className="relative overflow-hidden">
-        {/* Very soft radial bloom behind the product - the only hero effect. */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute left-1/2 top-0 h-[38rem] w-[38rem] -translate-x-1/4 rounded-full bg-accent/[0.07] blur-3xl lg:left-auto lg:right-0 lg:translate-x-1/4"
-        />
-
-        <div className="container-x relative grid items-center gap-12 py-14 md:py-20 lg:grid-cols-2 lg:gap-16 lg:py-24">
-          <div className="flex flex-col items-start gap-6">
-            <Reveal onLoad>
-              <p className="eyebrow">Power You Can Trust</p>
-            </Reveal>
-
-            <Reveal onLoad delay={60}>
-              <h1 style={{ fontSize: "var(--text-h1)" }} className="max-w-xl">
-                Clean Power for Every Day.
-              </h1>
-            </Reveal>
-
-            <Reveal onLoad delay={120}>
-              <p className="max-w-lg text-lg leading-relaxed text-slate">
-                Solar built around your roof and your actual usage, installed
-                carefully and looked after properly.
-              </p>
-            </Reveal>
-
-            <Reveal onLoad delay={180} className="flex flex-wrap gap-3">
-              <Button href="/products" variant="primary" size="lg">
-                Explore Products
-              </Button>
-              <Button href="/contact" variant="secondary" size="lg">
-                Contact Us
-              </Button>
-            </Reveal>
-
-            <Reveal onLoad delay={240}>
-              <ul className="flex flex-wrap gap-x-6 gap-y-3 pt-2">
-                {heroTrust.map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-center gap-2 text-[var(--text-small)] font-medium text-slate"
-                  >
-                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-tint-mint text-mint-deep">
-                      <Icon name="check" size={12} strokeWidth={2.4} />
-                    </span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-          </div>
-
-          <Reveal onLoad delay={120} className="relative">
-            {/* The one image on the page that must not be lazy-loaded: it is
-                the Largest Contentful Paint element. */}
-            <img
-              src="/images/hero-rooftop-solar-system.svg"
-              alt="A rooftop solar array with panels angled toward the sun"
-              width={720}
-              height={560}
-              fetchPriority="high"
-              decoding="async"
-              className="mx-auto w-full max-w-lg lg:max-w-none"
-            />
+      <section className="solar-hero" aria-labelledby="hero-title">
+        <img className="solar-hero-image" src="/images/solar-landscape.jpg" alt="Rows of solar panels collecting sunlight beneath an open sky" width={2200} height={1467} fetchPriority="high" decoding="async" />
+        <div className="solar-hero-shade" />
+        <div className="container-x solar-hero-content">
+          <div className="hero-layout">
+          <Reveal onLoad className="hero-copy">
+            <p className="hero-kicker"><span /> ENERGY FOR A BETTER TOMORROW</p>
+            <h1 id="hero-title">A brighter future.<br />Powered by <span>you.</span></h1>
+            <p className="hero-description">Turn everyday sunlight into lasting possibilities.<br className="hidden sm:block" /> Thoughtful solar solutions for your home, your business, and your future.</p>
+            <div className="hero-actions">
+              <Button href="/contact#enquiry-form" size="lg" withArrow>Start your solar journey</Button>
+              <Button href="/products" variant="onDarkGhost" size="lg">Explore our solutions</Button>
+            </div>
           </Reveal>
-        </div>
-      </section>
-
-      {/* ============================ SOLAR FINDER =========================== */}
-      <section id="solar-finder" className="section-y scroll-mt-24">
-        <div className="container-x">
-          <SectionHeading
-            eyebrow="Solar Finder"
-            title="Find the Right Setup for Your Needs"
-            description="Answer a few questions and we'll point you to a sensible starting point - then we'll work out the details with you."
-            align="center"
-            className="mb-10"
-          />
-
-          <Reveal delay={80}>
-            <SolarFinder />
+          <Reveal onLoad delay={180} className="hero-plan-card">
+            <p className="hero-plan-eyebrow">MAKE THE FIRST MOVE</p>
+            <h2>Your solar<br />starting point.</h2>
+            <p>Tell us what you want to power. We’ll help you begin with a clear, practical direction.</p>
+            <ul>
+              <li><Icon name="home" size={18} /><span>Home rooftop solar</span><Icon name="arrow-right" size={16} /></li>
+              <li><Icon name="business" size={18} /><span>Business solar planning</span><Icon name="arrow-right" size={16} /></li>
+              <li><Icon name="water-heater" size={18} /><span>Solar water heating</span><Icon name="arrow-right" size={16} /></li>
+            </ul>
+            <Link href="#solar-finder" className="hero-plan-link">Find your system <Icon name="arrow-right" size={18} /></Link>
           </Reveal>
-        </div>
-      </section>
-
-      {/* ============================= CATEGORIES ============================ */}
-      <section className="section-y bg-surface">
-        <div className="container-x">
-          <SectionHeading
-            eyebrow="Our Range"
-            title="Everything a Solar Setup Needs"
-            description="Panels to generate, inverters to convert, batteries to store, and solar heating and lighting for everything else."
-            align="center"
-            className="mb-10"
-          />
-
-          <CategoryGrid />
-        </div>
-      </section>
-
-      {/* ========================== FEATURED PRODUCTS ======================== */}
-      <section className="section-y">
-        <div className="container-x">
-          <div className="mb-10 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-            <SectionHeading
-              eyebrow="Featured"
-              title="Our Featured Products"
-              description="A closer look at the equipment we most often recommend, and what each one is good for."
-              className="mb-0"
-            />
-
-            <Reveal delay={80} className="shrink-0">
-              <Button href="/products" variant="secondary" size="md" withArrow>
-                View all products
-              </Button>
-            </Reveal>
           </div>
-
-          <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {featured.map((product, index) => (
-              <ProductCard
-                key={`${product.category}-${product.slug}`}
-                product={product}
-                delay={index * 70}
-              />
-            ))}
-          </ul>
+          <div className="hero-footnote"><span>BETTER ENERGY. GREATER POSSIBILITIES.</span><a href="#solutions" aria-label="Discover our solar solutions"><Icon name="arrow-right" size={19} /></a></div>
         </div>
       </section>
 
-      {/* ============================ WHY CHOOSE US ========================== */}
-      <section className="section-y bg-surface">
+      <div className="assurance-strip">
+        <div className="container-x assurance-grid">
+          {([{ icon: "compass", title: "Designed around you", text: "Your space. Your energy needs." }, { icon: "shield", title: "Quality at every step", text: "Carefully selected equipment." }, { icon: "support", title: "Here for the long run", text: "Dependable after-sales support." }] as const).map((item) => (
+            <div className="assurance-item" key={item.title}><Icon name={item.icon} size={29} /><div><strong>{item.title}</strong><span>{item.text}</span></div></div>
+          ))}
+        </div>
+      </div>
+
+      <section id="solutions" className="section-y solutions-section">
         <div className="container-x">
-          <SectionHeading
-            eyebrow="Why Choose Us"
-            title="Solar Made Simple."
-            description="From the first look at your roof to the years after it is running, we keep every step clear and dependable."
-            align="center"
-            className="mb-10"
-          />
-
-          <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {benefits.map((benefit, index) => (
-              <Reveal as="li" key={benefit.title} delay={index * 70}>
-                <div className="flex h-full flex-col gap-3.5 rounded-[var(--radius-card)] border border-line bg-canvas p-7">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-surface text-accent-deep shadow-[var(--shadow-soft)]">
-                    <Icon name={benefit.icon} size={21} />
-                  </span>
-
-                  <h3 className="font-display text-[1.0625rem] font-bold text-navy">
-                    {benefit.title}
-                  </h3>
-
-                  <p className="text-[var(--text-small)] leading-relaxed text-slate">
-                    {benefit.description}
-                  </p>
-                </div>
+          <Reveal className="section-intro"><div><p className="eyebrow">THE WAY FORWARD IS SOLAR</p><h2>Different needs.<br />One brighter direction.</h2></div><p>From the roof over your head to the business you’re building, we help you make the most of the sun.</p></Reveal>
+          <div className="solutions-grid">
+            {solutions.map((item, index) => (
+              <Reveal key={item.title} delay={index * 70}>
+                <Link href={item.href} className="solution-tile group"><div className="solution-top"><Icon name={item.icon} size={34} /><span>0{index + 1}</span></div><h3>{item.title}</h3><p>{item.description}</p><span className="solution-link">Discover the possibilities <Icon name="arrow-right" size={20} /></span></Link>
               </Reveal>
             ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* ============================ ABOUT PREVIEW ========================== */}
-      <section className="section-y">
-        <div className="container-x grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          <Reveal>
-            <img
-              src="/images/about-solar-installation.svg"
-              alt="Solar panels being installed on a clean residential rooftop"
-              width={640}
-              height={480}
-              loading="lazy"
-              decoding="async"
-              className="w-full rounded-[var(--radius-panel)]"
-            />
-          </Reveal>
-
-          <div className="flex flex-col items-start gap-6">
-            <SectionHeading
-              eyebrow="About Us"
-              title="Built on Reliability"
-              description="We believe going solar should be a clear decision, not a leap of faith. With quality equipment, honest sizing and steady support, we help people move to solar with confidence."
-              className="mb-0"
-            />
-
-            <Reveal delay={120}>
-              <Button href="/about" variant="secondary" size="md" withArrow>
-                About Us
-              </Button>
-            </Reveal>
           </div>
         </div>
       </section>
 
-      {/* =========================== SERVICES PREVIEW ======================== */}
-      <section className="section-y bg-surface">
+      <section className="section-y about-editorial">
+        <div className="container-x about-grid">
+          <Reveal className="about-visual"><img src="/images/electrical-installation.jpg" alt="An electrical professional carefully working on an installation" width={1000} height={1500} loading="lazy" /><div className="about-image-note"><Icon name="sun" size={36} /><span>Good energy.<br /><strong>From the ground up.</strong></span></div></Reveal>
+          <Reveal delay={100} className="about-copy"><p className="eyebrow">MEET CIBI SOLAR</p><h2>Big on possibilities.<br />Grounded in trust.</h2><p>Going solar is a meaningful step. We make it a clear one, with honest advice, thoughtfully chosen equipment and people who care about getting it right.</p><p>From understanding your first electricity bill to looking after your system, we bring every part of your solar journey together.</p><div className="about-principles"><span><Icon name="check" size={17} /> Honest recommendations</span><span><Icon name="check" size={17} /> Careful installation</span><span><Icon name="check" size={17} /> Ongoing support</span></div><Button href="/about" variant="secondary" withArrow>Get to know us</Button></Reveal>
+        </div>
+      </section>
+
+      <section className="section-y product-showcase">
         <div className="container-x">
-          <div className="mb-10 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-            <SectionHeading
-              eyebrow="Services"
-              title="Here When You Need Us"
-              description="From the first roof survey to the cleaning years later, we handle the parts that make solar work."
-              className="mb-0"
-            />
-
-            <Reveal delay={80} className="shrink-0">
-              <Button href="/services" variant="secondary" size="md" withArrow>
-                All services
-              </Button>
-            </Reveal>
-          </div>
-
-          <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {services.slice(0, 3).map((service, index) => (
-              <ServiceCard
-                key={service.slug}
-                service={service}
-                delay={index * 70}
-              />
+          <Reveal className="section-intro"><div><p className="eyebrow">OUR SOLAR ECOSYSTEM</p><h2>Everything connects.<br />Everything works together.</h2></div><div><p>Generate. Convert. Store. Put clean energy to work with a complete range of solar essentials.</p><Button href="/products" variant="quiet" withArrow className="mt-5">Explore all products</Button></div></Reveal>
+          <div className="ecosystem-grid">
+            {categories.map((category, index) => (
+              <Reveal key={category.slug} delay={index * 60} className={index === 0 ? "ecosystem-featured" : ""}>
+                <Link href={`/products/${category.slug}`} className={`ecosystem-card ${index === 0 ? "ecosystem-card-featured" : ""}`}>
+                  <div className="ecosystem-label"><span>0{index + 1} / {["GENERATE", "CONVERT", "STORE", "HEAT", "ILLUMINATE"][index]}</span><Icon name="arrow-right" size={21} /></div>
+                  <img src={category.image} alt={category.imageAlt} width={640} height={420} loading="lazy" />
+                  <div><h3>{category.name}</h3><p>{category.tagline}</p></div>
+                </Link>
+              </Reveal>
             ))}
-          </ul>
+          </div>
         </div>
       </section>
 
-      {/* =============================== FINAL CTA =========================== */}
-      <CtaBand
-        title="Ready for Cleaner Power?"
-        description="Send us a recent electricity bill and we'll tell you honestly what solar can do for your roof."
-        primary={{ label: "Explore Products", href: "/products" }}
-        secondary={{ label: "Contact Us", href: "/contact" }}
-      />
+      <section id="solar-finder" className="section-y finder-section">
+        <div className="container-x">
+          <Reveal className="finder-heading"><div><p className="eyebrow">YOUR NEXT CHAPTER STARTS HERE</p><h2>Let’s find your<br />kind of solar.</h2></div><p>A few simple questions. A sensible starting point.<br />Discover what could work for your space, then we’ll help you work out the details.</p></Reveal>
+          <Reveal delay={80}><SolarFinder /></Reveal>
+        </div>
+      </section>
+
+      <section className="section-y">
+        <div className="container-x">
+          <Reveal className="section-intro"><div><p className="eyebrow">WITH YOU, EVERY STEP</p><h2>A clear path to<br />cleaner energy.</h2></div><Button href="/services" variant="secondary" withArrow>How we help</Button></Reveal>
+          <div className="process-grid">{process.map((step, index) => <Reveal key={step.title} delay={index * 70} className="process-step"><div className="process-marker"><span className="process-number">0{index + 1}</span><i /></div><h3>{step.title}</h3><p>{step.text}</p></Reveal>)}</div>
+        </div>
+      </section>
+
+      <CtaBand title="The sun is ready. Are you?" description="A better energy future starts with a conversation. Tell us about your space, and let’s explore what’s possible." primary={{ label: "Let’s talk solar", href: "/contact#enquiry-form" }} secondary={{ label: "Find your system", href: "/#solar-finder" }} />
     </>
   );
 }

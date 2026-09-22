@@ -37,8 +37,8 @@ const outDir = join(here, "..", "public");
 mkdirSync(outDir, { recursive: true });
 
 /* Brand colours, kept in step with app/globals.css. */
-const NAVY = "#102a43";
-const ACCENT = "#5b9dff";
+const NAVY = "#122d3b";
+const ACCENT = "#f4cf4c";
 
 /**
  * The mark: a solar module in perspective with the sun resting above it,
@@ -46,10 +46,10 @@ const ACCENT = "#5b9dff";
  * `radius` of 0 gives the full-bleed variant for masked platforms.
  */
 const markSvg = (radius) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
-  <rect width="512" height="512" rx="${radius}" fill="${NAVY}"/>
-  <circle cx="256" cy="172" r="59" fill="${ACCENT}"/>
-  <path d="M114 382 L156 271h200l42 111z" fill="none" stroke="#ffffff" stroke-width="27" stroke-linejoin="round"/>
-  <path d="M138 326h236M256 271v111" stroke="#ffffff" stroke-width="22" stroke-linecap="round"/>
+  <rect width="512" height="512" rx="${radius}" fill="${ACCENT}"/>
+  <circle cx="256" cy="172" r="59" fill="${NAVY}"/>
+  <path d="M114 382 L156 271h200l42 111z" fill="none" stroke="${NAVY}" stroke-width="27" stroke-linejoin="round"/>
+  <path d="M138 326h236M256 271v111" stroke="${NAVY}" stroke-width="22" stroke-linecap="round"/>
 </svg>`;
 
 const dataUri = (svg) =>
@@ -109,8 +109,8 @@ const manifest = {
     "Solar panels, inverters, batteries, water heaters and street lights, with honest guidance and dependable support.",
   start_url: "/",
   display: "standalone",
-  background_color: "#f8fafc",
-  theme_color: "#f8fafc",
+  background_color: "#fcfcf9",
+  theme_color: "#122d3b",
   icons: [
     { src: "/icon-192.png", sizes: "192x192", type: "image/png", purpose: "any maskable" },
     { src: "/icon-512.png", sizes: "512x512", type: "image/png", purpose: "any maskable" },
@@ -126,13 +126,13 @@ const write = (name, data) => {
 console.log("Generating icons -> public/");
 
 /* Rounded mark for the SVG favicon; browsers draw it on their own background. */
-write("icon.svg", Buffer.from(markSvg(150), "utf8"));
+write("icon.svg", Buffer.from(markSvg(75), "utf8"));
 
 /* Favicon sizes. 48 covers Windows tiles and high-DPI tabs. */
 const icoSizes = [16, 32, 48];
 const icoImages = [];
 for (const size of icoSizes) {
-  icoImages.push({ size, data: await png(size, 150) });
+  icoImages.push({ size, data: await png(size, 75) });
 }
 write("favicon.ico", buildIco(icoImages));
 

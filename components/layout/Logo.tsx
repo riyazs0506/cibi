@@ -15,14 +15,14 @@ export interface LogoProps {
  * not to look like a clip-art sunburst.
  */
 export function Logo({ onDark = false, className = "", asLink = true }: LogoProps) {
-  const ink = onDark ? "#102a43" : "#ffffff";
-  const accent = onDark ? "#3d82ea" : "#5b9dff";
+  const ink = "var(--color-navy)";
+  const accent = "var(--color-navy)";
 
   const mark = (
     <span className="flex items-center gap-2.5">
       <svg
-        width="34"
-        height="34"
+        width="42"
+        height="42"
         viewBox="0 0 34 34"
         fill="none"
         aria-hidden="true"
@@ -32,8 +32,8 @@ export function Logo({ onDark = false, className = "", asLink = true }: LogoProp
         <rect
           width="34"
           height="34"
-          rx="10"
-          fill={onDark ? "#ffffff" : "#102a43"}
+          rx="5"
+          fill="var(--color-accent)"
         />
 
         {/* Sun - the single accent touch */}
@@ -57,7 +57,7 @@ export function Logo({ onDark = false, className = "", asLink = true }: LogoProp
 
       <span
         className={[
-          "font-display text-[1.0625rem] font-extrabold tracking-[-0.02em]",
+          "font-display text-[1.375rem] font-extrabold tracking-[-0.04em]",
           onDark ? "text-white" : "text-navy",
         ].join(" ")}
       >

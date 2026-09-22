@@ -23,7 +23,7 @@ export function PageHero({
   children,
 }: PageHeroProps) {
   return (
-    <section className="relative overflow-hidden border-b border-line bg-surface">
+    <section className="inner-page-hero relative overflow-hidden border-b border-line bg-surface">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -right-20 -top-40 h-[26rem] w-[26rem] rounded-full bg-accent/[0.06] blur-3xl"

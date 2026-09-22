@@ -21,11 +21,11 @@ const base =
 
 const variants: Record<ButtonVariant, string> = {
   primary:
-    "bg-navy text-white shadow-[var(--shadow-soft)] hover:bg-navy-soft hover:shadow-[var(--shadow-lift)]",
+    "bg-accent text-navy shadow-[var(--shadow-soft)] hover:bg-[#ffe080] hover:shadow-[var(--shadow-lift)]",
   secondary:
     "bg-surface text-navy border border-line hover:border-accent hover:text-accent-deep hover:shadow-[var(--shadow-soft)]",
   onDark:
-    "bg-white text-navy hover:bg-tint-blue shadow-[0_10px_30px_-16px_rgba(0,0,0,0.6)]",
+    "bg-accent text-navy hover:bg-[#ffe080] shadow-[0_10px_30px_-16px_rgba(0,0,0,0.6)]",
   onDarkGhost:
     "bg-transparent text-white border border-white/30 hover:border-white/70 hover:bg-white/10",
   quiet:

@@ -62,13 +62,13 @@ export function Header() {
       className={[
         "sticky top-0 z-50 border-b transition-[background-color,box-shadow,border-color]",
         "duration-[var(--duration-soft)] ease-[var(--ease-soft)]",
-        "bg-canvas/85 backdrop-blur-md supports-[backdrop-filter]:bg-canvas/70",
+        "bg-surface/95 backdrop-blur-md supports-[backdrop-filter]:bg-surface/95",
         scrolled
           ? "border-line shadow-[var(--shadow-header)]"
           : "border-transparent",
       ].join(" ")}
     >
-      <div className="container-x flex h-[4.5rem] items-center justify-between gap-4 md:h-20">
+      <div className="container-x flex h-[4.5rem] items-center justify-between gap-4 md:h-[5.5rem]">
         <Logo />
 
         {/* ---------------------------- Desktop nav --------------------------- */}
@@ -107,8 +107,8 @@ export function Header() {
         </nav>
 
         <div className="hidden lg:block">
-          <Button href={FINDER_HREF} variant="primary" size="md">
-            Design Your System
+          <Button href="/contact#enquiry-form" variant="primary" size="md" withArrow>
+            Let’s talk solar
           </Button>
         </div>
 
@@ -149,6 +149,7 @@ export function Header() {
                       "transition-colors duration-[var(--duration-soft)]",
                       active ? "text-accent-deep" : "text-navy",
                     ].join(" ")}
+                    onClick={closeMenu}
                   >
                     {link.label}
                     <Icon name="arrow-right" size={18} className="text-muted" />
@@ -159,12 +160,13 @@ export function Header() {
           </ul>
 
           <Button
-            href={FINDER_HREF}
+            href="/contact#enquiry-form"
             variant="primary"
             size="lg"
             className="mt-5 w-full"
+            onClick={closeMenu}
           >
-            Design Your System
+            Let’s talk solar
           </Button>
         </nav>
       </div>
