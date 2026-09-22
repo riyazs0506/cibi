@@ -8,7 +8,7 @@ whole set shares a light source, palette and perspective.
 ```bash
 npm run assets    # regenerates every image and the social card
 ```
-
+,ms? Dc
 ## Replacing with photography
 
 Drop a real photo at the same path with the same filename. No component
